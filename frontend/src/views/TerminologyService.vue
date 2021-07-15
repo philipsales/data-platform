@@ -42,9 +42,9 @@ export default {
             link: 'VocabularyList',
           },
           {
-            title: 'Maintenance',
+            title: 'Valueset',
             icon: 'mdi-account',
-            link: 'MaintenanceMain',
+            link: 'ValuesetList',
           },
         ],
       },

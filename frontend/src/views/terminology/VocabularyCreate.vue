@@ -1,14 +1,6 @@
 <template>
   <div class="terminology-page">
-      <v-col cols="2" style="background-color: gree">
-        <h3 class="font-weight-bold mb-2">
-        <router-link class="nav-link" :to="{name: 'VocabularyList'}" exact>
-          <go-back> </go-back>
-        </router-link>
-          &nbsp; Create Vocabulary
-        </h3>
-      </v-col>
-    <v-divider></v-divider>
+    <go-back-header :headerTitle="headerTitle"></go-back-header>
 <v-card>
     <v-tabs vertical>
       <v-tab>
@@ -130,17 +122,18 @@
 </template>
 
 <script>
-import GoBack from '../../components/ui/GoBackButton.vue';
+import GoBackHeader from '../../components/ui/GoBackHeader.vue';
 
 export default {
   name: 'VocabularyCreate',
   components: {
-    'go-back': GoBack,
+    GoBackHeader,
   },
   data() {
     return {
       drawer: true,
       mini: true,
+      headerTitle: 'Create Vocabulary',
       headers: [
         {
           text: 'Index',

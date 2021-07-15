@@ -7,7 +7,8 @@ import NotFound from '../views/NotFound.vue';
 import TerminologyService from '../views/TerminologyService.vue';
 import VocabularyList from '../views/terminology/VocabularyList.vue';
 import VocabularyCreate from '../views/terminology/VocabularyCreate.vue';
-import MaintenanceMain from '../views/terminology/MaintenanceMain.vue';
+import ValuesetCreate from '../views/terminology/ValuesetCreate.vue';
+import ValuesetList from '../views/terminology/ValuesetList.vue';
 
 import ClinicalAnnotation from '../views/ClinicalAnnotation.vue';
 import ProjectList from '../views/annotation/ProjectList.vue';
@@ -15,7 +16,9 @@ import ReviewList from '../views/annotation/ReviewList.vue';
 
 import CohortBuilder from '../views/CohortBuilder.vue';
 import CohortList from '../views/cohort/CohortList.vue';
+import CohortCreate from '../views/cohort/CohortCreate.vue';
 import SubsetList from '../views/cohort/SubsetList.vue';
+import SubsetCreate from '../views/cohort/SubsetCreate.vue';
 
 import SidebarStandard from '../components/sidebars/SidebarStandard.vue';
 
@@ -49,9 +52,9 @@ export default new Router({
       },
       {
         path: 'maintenance',
-        name: 'MaintenanceMain',
+        name: 'ValuesetList',
         components: {
-          default: MaintenanceMain,
+          default: ValuesetList,
           sidebar: SidebarStandard,
         },
       },
@@ -60,6 +63,10 @@ export default new Router({
     path: '/vocabulary/create',
     name: 'VocabularyCreate',
     component: VocabularyCreate,
+  }, {
+    path: '/vocabulary/create',
+    name: 'ValuesetCreate',
+    component: ValuesetCreate,
   }, {
     path: '/annotation',
     component: ClinicalAnnotation,
@@ -118,6 +125,14 @@ export default new Router({
         },
       },
     ],
+  }, {
+    path: '/cohort/create',
+    name: 'CohortCreate',
+    component: CohortCreate,
+  }, {
+    path: '/subset/create',
+    name: 'SubsetCreate',
+    component: SubsetCreate,
   }, {
     path: '/:notFound(.*)',
     component: NotFound,

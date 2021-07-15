@@ -31,7 +31,7 @@ export default {
       drawer: true,
       items: [
         { title: 'Vocabulary', icon: 'mdi-home-city' },
-        { title: 'Maintenance', icon: 'mdi-account' },
+        { title: 'Valueset', icon: 'mdi-account' },
       ],
       mini: true,
     };

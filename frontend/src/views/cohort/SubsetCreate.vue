@@ -346,7 +346,7 @@
 
 <script>
 export default {
-  name: 'CohortCreate',
+  name: 'SubsetCreate',
   data() {
     return {
       drawer: true,
