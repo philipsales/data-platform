@@ -1,6 +1,13 @@
 <template>
   <div>
-    <v-app-bar app clipped-left color="#009e99" dark>
+    <v-app-bar
+      app
+      clipped-left
+      color="#009e99"
+      class="main-app-bar"
+      dark
+      dense
+    >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>
         <router-link class="nav-link" :to="{name: 'HomePage'}" exact>
@@ -78,6 +85,10 @@ export default {
 </style>
 
 <style scoped>
+.main-app-bar {
+  height: 648px;
+  background-color: #009e99;
+}
 .home-sidebar {
   /* display: flex ; */
   overflow:hidden;

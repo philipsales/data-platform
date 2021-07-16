@@ -59,7 +59,7 @@ export default {
 <style scoped>
 .page-sidebar {
   z-index: 1;
-  margin-top:10px;
+  margin-top: -12px;
 }
 .nav-link {
   text-decoration: none;

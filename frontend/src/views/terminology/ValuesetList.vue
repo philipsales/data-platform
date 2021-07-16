@@ -1,8 +1,8 @@
 <template>
-  <div class="terminology-page">
+  <v-container class="generic-table-page">
     <landing-create :content="createListContent"></landing-create>
     <landing-list-table :content="tableContent"></landing-list-table>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -70,22 +70,4 @@ export default {
 };
 </script>
 <style scoped>
-.terminology-page {
-  width: 100%;
-  background-color: ed;
-  height: 1000px;
-}
-.page-sidebar {
-  z-index: 1;
-  margin-top:10px;
-}
-.page-label {
-  position: left;
-}
-.nav-link {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  vertical-align: middle;
-}
 </style>

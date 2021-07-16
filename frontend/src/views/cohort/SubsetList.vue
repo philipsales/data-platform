@@ -1,8 +1,8 @@
 <template>
-  <div class="terminology-page">
+  <v-container class="generic-table-page">
     <landing-create :content="createListContent"></landing-create>
     <landing-list-table :content="subsetTableContent"></landing-list-table>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -66,5 +66,4 @@ export default {
 };
 </script>
 <style scoped>
-
 </style>

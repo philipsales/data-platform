@@ -19,10 +19,7 @@ export default {
 
 <style scoped>
 .go-back {
-  display: flex;
   cursor: pointer;
-}
-button {
   border: 0;
 }
 </style>

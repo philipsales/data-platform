@@ -1,15 +1,8 @@
 <template>
-  <div>
-    <v-col cols="2" style="background-color: gree">
-        <h3 class="font-weight-bold mb-2">
-        <go-back-button></go-back-button>
-        <!-- <router-link class="nav-link" :to="{name: 'VocabularyList'}" exact>
-          <go-back> </go-back>
-        </router-link> -->
-        &nbsp; {{headerTitle}}
-        </h3>
-    </v-col>
-  </div>
+  <v-row class="back-header">
+    <go-back-button></go-back-button>
+    <h3 class="font-weight-bold"> &nbsp; {{headerTitle}} </h3>
+  </v-row>
 </template>
 
 <script>
@@ -32,11 +25,9 @@ export default {
 </script>
 
 <style scoped>
-.go-back {
-  display: flex;
-  cursor: pointer;
-}
-button {
-  border: 0;
+.back-header {
+  height: 50px;
+  margin: 5px 5px -10px 0px;
+  background-color: pik;
 }
 </style>

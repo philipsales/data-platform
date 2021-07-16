@@ -1,8 +1,11 @@
 <template>
-  <v-app class="container">
-    <HeaderApp/>
+  <v-app style="background: lue">
+    <header-app></header-app>
     <v-main>
+      <v-container fluid style="background: yllow"
+      class="pa-0 ma-0">
       <router-view></router-view>
+      </v-container>
     </v-main>
   </v-app>
 </template>
@@ -22,48 +25,19 @@ export default {
 };
 </script>
 <style>
+.main-container {
+  /* background: blue;
+  color: blue; */
+}
+.generic-table-page {
+  width: 103%;
+  background-color: bluxe;
+  margin-top: -70px;
+  /* height: 1000px; */
+}
 
 </style>
 
 <style scoped>
-.home-sidebar {
-  /* display: flex ; */
-  overflow:hidden;
-  background: aqua;
-  margin-left: -80px;
-}
-.one {
-  height: 800px;
-  background: red;
-  float: left;
-}
-.nav-link {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  vertical-align: middle;
-}
-.route-enter-from {
-  opacity: 0;
-  transform: translateY(-30px);
-}
 
-.route-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.route-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.route-leave-active {
-  transition: all 0.3s ease-in;
-}
-
-.route-enter-to,
-.route-leave-from {
-  opacity: 1;
-  transform: translateY(0);
-}
 </style>
