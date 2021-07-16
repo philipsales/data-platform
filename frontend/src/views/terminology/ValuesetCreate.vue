@@ -1,36 +1,47 @@
 <template>
   <div class="terminology-page">
-    <go-back-header :headerTitle="headerTitle"></go-back-header>
-  <v-stepper
-    v-model="e6"
-    vertical>
-    <v-stepper-step
-      :complete="e6 > 1"
-      step="1">
-      Configure Cohort
-      <small>Create cohort criteria</small>
-    </v-stepper-step>
+  <go-back-header :headerTitle="headerTitle"></go-back-header>
 
-    <v-stepper-content step="1">
-      <v-btn
-        color="primary"
-        @click="e6 = 2">
-        Continue
-      </v-btn>
-      <v-btn text>
-        Cancel
-      </v-btn>
-    </v-stepper-content>
-
-  </v-stepper>
-    <div style="background: red">
-      <v-card
-        color="grey lighten-1"
-        class="mb-12"
-        height="200px">
-        <h1>Hello world</h1>
-      </v-card>
-    </div>
+    <v-row class="" style="min-height: 400px">
+      <v-col cols="6" style="background-color: gree">
+        <div style="background: red">
+          <v-row align="center">
+            <v-col
+              class="d-flex"
+              cols="12"
+              sm="6">
+              <v-select
+                :items="vocabularies"
+                :model="vocabularies"
+                name="label"
+                item-text="label"
+                label="Domain">
+              </v-select>
+            </v-col>
+            <v-col
+              class="d-flex"
+              cols="12"
+              sm="6">
+            <v-text-field
+              prepend-inner-icon="mdi-magnify"
+              single-line
+              label="Valuset"
+              class="d-flex">
+              required></v-text-field>
+            </v-col>
+            </v-row>
+        </div>
+      </v-col>
+      <v-col cols="6" style="background-color: blu">
+        <div style="background: red">
+          <v-card
+            color="lighten-1"
+            class="mb-12"
+            height="200px">
+          </v-card>
+        </div>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -46,8 +57,14 @@ export default {
     return {
       drawer: true,
       mini: true,
+      search: '',
       headerTitle: 'Create Valueset',
-      e6: 1,
+      vocabularies: [
+        { label: 'RxNorm', value: 'rxnorm' },
+        { label: 'ICD10 CM', value: 'icd10cm' },
+        { label: 'SNOMED CT', value: 'snomedct' },
+        { label: 'LOINC', value: 'loinc' },
+      ],
     };
   },
 };

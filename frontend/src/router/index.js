@@ -64,7 +64,7 @@ export default new Router({
     name: 'VocabularyCreate',
     component: VocabularyCreate,
   }, {
-    path: '/vocabulary/create',
+    path: '/valueset/create',
     name: 'ValuesetCreate',
     component: ValuesetCreate,
   }, {

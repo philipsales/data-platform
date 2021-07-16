@@ -66,7 +66,7 @@ export default {
   text-decoration: none;
   color: inherit;
   display: flex;
-  vertical-align: middle;
+
 }
 .aside {
   background-color: grey;

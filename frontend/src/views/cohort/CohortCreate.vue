@@ -1,5 +1,6 @@
 <template>
   <div>
+    <go-back-header :headerTitle="headerTitle"></go-back-header>
     <v-stepper v-model="e1">
     <v-stepper-header>
       <v-stepper-step
@@ -345,12 +346,18 @@
 </template>
 
 <script>
+import GoBackHeader from '../../components/ui/GoBackHeader.vue';
+
 export default {
   name: 'CohortCreate',
+  components: {
+    GoBackHeader,
+  },
   data() {
     return {
       drawer: true,
       mini: true,
+      headerTitle: 'Create Cohort',
       e1: 1,
       statusColor: 'red',
       criteriaOption: ['Include', 'Exclude'],

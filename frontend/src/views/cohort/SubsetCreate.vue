@@ -1,285 +1,150 @@
 <template>
   <div>
+    <go-back-header :headerTitle="headerTitle"></go-back-header>
     <v-stepper v-model="e1">
-    <v-stepper-header>
-      <v-stepper-step
-        :complete="e1 > 1"
-        step="1">
-       Configure Cohort
-       <small>Define specific criteria</small>
-      </v-stepper-step>
-      <v-divider></v-divider>
-      <v-stepper-step
-        :complete="e1 > 2"
-        step="2">
-        Review Parameters
-        <small>View criteria and concepts</small>
-      </v-stepper-step>
-      <v-divider></v-divider>
-      <v-stepper-step
-        step="3">
-        Generate Data
-        <small>Download or export reports</small>
-      </v-stepper-step>
-      <v-divider></v-divider>
+      <v-stepper-header>
+        <v-stepper-step
+          :complete="e1 > 1"
+          step="1">
+        <h2>Configure Subset</h2>
+        <small>Define subset parameters</small>
+        </v-stepper-step>
+        <v-divider></v-divider>
+        <v-stepper-step
+          :complete="e1 > 2"
+          step="2">
+          <h2>Find Concepts</h2>
+          <small>Query concepts to be included in the subset</small>
+        </v-stepper-step>
+        <v-divider></v-divider>
+        <v-stepper-step
+          step="3">
+          <h2>Review List</h2>
+          <small>Verify the final subset list</small>
+        </v-stepper-step>
+        <v-divider></v-divider>
     </v-stepper-header>
 
-    <v-stepper-items>
-
-      <!-- STEP 1: CONFIGURE COHORT  -->
+      <v-stepper-items>
+      <!-- STEP 1 -->
       <v-stepper-content step="1">
         <v-row class="" style="min-height: 400px">
-          <v-col cols="8" style="background-color: gree">
+          <v-col cols="12" style="background-color: gree">
            <form>
             <v-container fluid>
-              <h2 class="form-subheader">Cohort Name</h2>
+              <h2 class="form-subheader">Subset Name</h2>
                 <v-row align="center">
                   <v-col
                     class="d-flex"
                     cols="12"
                     sm="11">
                   <v-text-field
-                    label="Cohort Name"
+                    label="Subset Name"
                     class="d-flex">
                     required></v-text-field>
                   </v-col>
                 </v-row>
 
-              <h2 class="form-subheader">Dataset</h2>
+              <h2 class="form-subheader">Description</h2>
                 <v-row align="center">
                   <v-col
                     class="d-flex"
                     cols="12"
                     sm="11">
-                    <v-select
-                      v-model="value"
-                      :items="dataSource"
-                      attach
-                      chips
-                      label="Data Source"
-                      multiple
-                    ></v-select>
+                  <v-text-field
+                    label="Description"
+                    class="d-flex">
+                    required></v-text-field>
                   </v-col>
                 </v-row>
 
-              <h2 class="form-subheader">Demographics</h2>
-                <div v-for="(demographic, index) in demographics"
-                  :key=index>
-                  <v-row align="center">
-                    <v-col
-                      class="d-flex"
-                      cols="12"
-                      sm="5">
-                      <v-select
-                        :items="demographicOption"
-                        :model="demographic.domain"
-                        label="Option">
-                      </v-select>
-                    </v-col>
-                    <v-col
-                      class="d-flex"
-                      cols="12"
-                      sm="5">
-                      <v-select
-                        :model="demographic.subset"
-                        label="Value">
-                      </v-select>
-                    </v-col>
-                    <v-btn @click="removeMultipleField(index, refinements)">
-                      <v-icon>mdi-delete</v-icon>
-                    </v-btn>
-                  </v-row>
+              <h2 class="form-subheader">Domain</h2>
+                <div class="mr-4 ml-4">
+                  <v-layout row wrap>
+                    <v-flex v-for="(domain,index) in domains" :key="index" xs6>
+                      <v-checkbox light
+                        :label="domain.label"
+                        :value="domain.value" >
+                      </v-checkbox>
+                    </v-flex>
+                  </v-layout>
                 </div>
-                <v-btn @click="addDemographics" class="primary">add</v-btn>
+                <br>
 
-              <h2 class="form-subheader">Primary Criteria</h2>
-                <v-row align="center">
-                  <v-col
-                    class="d-flex"
-                    cols="12"
-                    sm="6">
-                    <v-select
-                      :items="domain"
-                      label="Domain">
-                    </v-select>
-                  </v-col>
-                  <v-col
-                    class="d-flex"
-                    cols="12"
-                    sm="5">
-                    <v-select
-                      :items="subset"
-                      label="Subset">
-                    </v-select>
-                    </v-col>
-                </v-row>
-
-              <h2 class="form-subheader">Refinements</h2>
-                <div v-for="(refinement, index) in refinements"
-                  :key=index>
-                  <v-row align="center">
-                    <v-col
-                      class="d-flex"
-                      cols="12"
-                      sm="2">
-                      <v-select
-                        :items="criteriaOption"
-                        :model="refinement.criteria"
-                        label="Criteria">
-                      </v-select>
-                    </v-col>
-                    <v-col
-                      class="d-flex"
-                      cols="12"
-                      sm="4">
-                      <v-select
-                        :items="domain"
-                        :model="refinement.domain"
-                        label="Domain">
-                      </v-select>
-                    </v-col>
-                    <v-col
-                      class="d-flex"
-                      cols="12"
-                      sm="4">
-                      <v-select
-                        :items="subset"
-                        :model="refinement.subset"
-                        label="Subset">
-                      </v-select>
-                    </v-col>
-                    <v-btn @click="removeMultipleField(index, refinements)">
-                      <v-icon>mdi-delete</v-icon>
-                    </v-btn>
-                  </v-row>
+              <h2 class="form-subheader">Vocabulary</h2>
+                <div class="mr-4 ml-4">
+                  <v-layout row wrap>
+                    <v-flex v-for="(vocabulary,index) in vocabularies" :key="index" xs6>
+                      <v-checkbox light
+                        :label="vocabulary.label"
+                        :value="vocabulary.value" >
+                      </v-checkbox>
+                    </v-flex>
+                  </v-layout>
                 </div>
-                <v-btn @click="addMultipleField" class="primary">add</v-btn>
+                <br>
 
-              <h2 class="form-subheader">Outcome</h2>
-                <v-row align="center">
-                  <v-col
-                    class="d-flex"
-                    cols="12"
-                    sm="7">
-                    <v-select
-                      :items="domain"
-                      label="Domain">
-                    </v-select>
-                  </v-col>
-                  <v-col
-                    class="d-flex"
-                    cols="12"
-                    sm="4">
-                    <v-select
-                      :items="subset"
-                      label="Subset">
-                    </v-select>
-                    </v-col>
-                  </v-row>
-              </v-container>
+            </v-container>
               <v-btn
                 color="primary"
                 class="mr-4"
                 @click="e1 = 2">
                 Continue
               </v-btn>
-              <v-btn
-                color="success"
-                class="mr-4"
-                >
-                Run
-              </v-btn>
-              <v-btn
-                class="mr-4"
-                >
-                Clear
-              </v-btn>
             </form>
           </v-col>
 
-            <!-- Query Result -->
-          <v-divider vertical inset></v-divider>
-            <v-col cols="4" style="background-color: ed">
-              <h2 class="result-subheader">Query Result</h2>
-              <div class="query-result">
-                3,065,275 Total Patients
-                800,00 have Cardiovascular Disease
-                60,000 are taking NSAIDS Medication
-                and not taking ULCER Medications
-                3,000 have Kidney Disease
-              </div>
-            </v-col>
         </v-row>
       </v-stepper-content>
 
-      <!-- STEP 2: REVEW PARAMETERS -->
+      <!-- STEP 2 -->
       <v-stepper-content step="2">
-        <!-- <v-card
-          class="mb-12"
-          color="grey lighten-1"
-          height="500px">
-          </v-card> -->
-        <v-row class="" style="min-height: 300px">
-          <v-col cols="7" style="background-color: reen">
-            <h2 class="form-subheader">Cohort Definitions</h2>
+        <v-row class="" style="">
+          <v-col cols="6" style="background-color: ed">
+          <h2 class="form-subheader">Search Concepts</h2>
+            <v-text-field
+              v-model="search"
+              prepend-inner-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+            ></v-text-field>
             <br>
-            <h4>Cohort Name: Cardiovascular Disease takings NSAIDS with Kidney Disease</h4>
-            <div class="query-result">
-            <br>
-              People may enter the cohort when observing any of the following:
-            <ul>
-              <li>Male</li>
-              <li>15 to 60 years old</li>
-              <li>have occurrence of Cardiovascular disease</li>
-              <li>
-              have at least 1 drug exposure of NSAID medications
-              </li>
-              <li>
-              have no drug exposure of Ulcer Medications
-              </li>
-              <li>
-              have at least 1 condition occurrence of Kidney Disease
-              </li>
-            </ul>
-            </div>
-
+              <v-data-table
+                :headers="searchValuesetContent.headers"
+                :items="searchValuesetContent.rows"
+                item-key="conceptId"
+                show-select
+                :items-per-page="5"
+                class="elevation-1">
+                <template v-slot:item.action="{ item }">
+                  <a href="" class="descendant">
+                  <v-icon color="blue darken-1"
+                    v-model="item.action"
+                    text >mdi-magnify</v-icon>
+                  </a>
+                </template>
+              </v-data-table>
           </v-col>
-           <v-col cols="5" style="background-color: ed">
-            <h2 class="form-subheader">Concept Subsets</h2>
-            <br>
-            <div>
-              <v-row align="center" justify="left" style="margin-left: 20px;">
-                <v-layout child-flex>
-                <v-data-table
-                  :headers="subsetContent.headers"
-                  :items="subsetContent.rows"
-                  :items-per-page="5"
-                  class="elevation-1"
-                ></v-data-table>
-                </v-layout>
-              </v-row>
-            </div>
+          <v-col cols="6" style="background-color: ed">
+            <h2 class="form-subheader">Selected Concepts</h2>
+            <br> <br> <br>
+            <v-data-table
+              :headers="selectedValuesetContent.headers"
+              :items="selectedValuesetContent.rows"
+              :items-per-page="5"
+              class="elevation-1">
+              <template v-slot:item.action="{ item }">
+                <v-icon color="blue darken-1"
+                  v-model="item.action"
+                  text >mdi-delete</v-icon>
+              </template>
+            </v-data-table>
           </v-col>
         </v-row>
-        <!-- <v-row class="" style="min-height: 300px">
-          <v-col cols="12" style="background-color: lue">
-            <h2 class="form-subheader">Subset Descendants</h2>
-            <br>
-            <div>
-              <v-row align="center" justify="left" style="margin-left: 20px;">
-                <v-layout child-flex>
-                <v-data-table
-                  :headers="valuesetContent.headers"
-                  :items="valuesetContent.rows"
-                  :items-per-page="5"
-                  class="elevation-1"
-                ></v-data-table>
-                </v-layout>
-              </v-row>
-            </div>
-          </v-col>
-        </v-row> -->
 
+        <v-row class="" style="">
+        </v-row>
         <br> <br>
         <v-btn
           color="primary"
@@ -294,40 +159,15 @@
       </v-stepper-content>
 
       <v-stepper-content step="3">
-        <!-- <v-card
-          class="mb-12"
-          color="grey lighten-1"
-          height="200px">
-        </v-card>  -->
-        <v-row class="" style="min-height: 300px">
-          <v-col cols="12" style="background-color: gree">
-            <div>
-              <v-row align="center" justify="center" style="margin-left: 20px;">
-                <v-layout child-flex>
-                  <v-data-table
-                    :headers="reportContent.headers"
-                    :items="reportContent.rows"
-                    :items-per-page="5"
-                    class="elevation-1">
-                    <template v-slot:item.action="{ item }">
-                      <v-btn color="blue darken-1"
-                        v-model="item.action"
-                        text @click="generateData">Generate</v-btn>
-                    </template>
-                    <template v-slot:item.status="{ item }">
-                      <v-chip
-                        :color="getColor(item.status)"
-                        dark>
-                        {{ item.status}}
-                      </v-chip>
-                    </template>
-                  </v-data-table>
-                </v-layout>
-              </v-row>
-            </div>
-          </v-col>
-        </v-row>
-
+        <h2 class="form-subheader">Final Subsets: Cardiovasuclar Disease</h2>
+          <v-data-table
+            :headers="valuesetContent.headers"
+            :items="valuesetContent.rows"
+            :items-per-page="5"
+            :search="search"
+            class="elevation-1">
+          ></v-data-table>
+        <br> <br>
         <v-btn
           color="primary"
           @click="e1 = 3">
@@ -345,53 +185,31 @@
 </template>
 
 <script>
+import GoBackHeader from '../../components/ui/GoBackHeader.vue';
+
 export default {
   name: 'SubsetCreate',
+  components: {
+    GoBackHeader,
+  },
   data() {
     return {
       drawer: true,
       mini: true,
+      headerTitle: 'Create Subset',
+      search: '',
       e1: 1,
-      statusColor: 'red',
-      criteriaOption: ['Include', 'Exclude'],
-      demographicOption: ['Age', 'Sex'],
-      textFields: [
-        { value: '' },
+      domains: [
+        { label: 'Condition', value: 'condition' },
+        { label: 'Measurement', value: 'medication' },
+        { label: 'Medication', value: 'medication' },
+        { label: 'Procedure', value: 'procedure' },
       ],
-      refinements: [{
-        criteria: {
-          value: '',
-        },
-        domain: {
-          value: '',
-        },
-        subset: {
-          value: '',
-        },
-      }],
-      demographics: [{
-        domain: {
-          value: '',
-        },
-        subset: {
-          value: '',
-        },
-      }],
-      dataSource: [
-        'The Medical City',
-        'Keralty',
-        'Medcheck',
-      ],
-      domain: [
-        'Condition',
-        'Medication',
-        'Procedure',
-        'Measurement',
-        'Observation',
-      ],
-      subset: [
-        'NSAIDS Medications',
-        'Ulcer Medications',
+      vocabularies: [
+        { label: 'RxNorm', value: 'rxnorm' },
+        { label: 'ICD10 CM', value: 'icd10cm' },
+        { label: 'SNOMED CT', value: 'snomedct' },
+        { label: 'LOINC', value: 'loinc' },
       ],
       subsetContent: {
         headers: [
@@ -403,31 +221,15 @@ export default {
           },
         ],
         rows: [
-          {
-            name: 'Cardiovascular Diseases',
-          },
-          {
-            name: 'NSAIDS Medications',
-          },
-          {
-            name: 'Kidney Disease',
-          },
-          {
-            name: 'Diabetes Medications',
-          },
-          {
-            name: 'Ulcer Medications',
-          },
+          { name: 'Cardiovascular Diseases' },
+          { name: 'NSAIDS Medications' },
+          { name: 'Kidney Disease' },
+          { name: 'Diabetes Medications' },
+          { name: 'Ulcer Medications' },
         ],
       },
       valuesetContent: {
         headers: [
-          {
-            text: 'ID',
-            align: 'start',
-            sortable: false,
-            value: 'conceptId',
-          },
           { text: 'Code', value: 'conceptCode' },
           { text: 'Name', value: 'conceptName' },
           { text: 'Class', value: 'class' },
@@ -444,17 +246,78 @@ export default {
             vocabulary: 'ICD10 CM',
           },
           {
-            conceptId: '213233',
+            conceptId: '23233',
             conceptCode: '344-3',
             conceptName: 'Heart Attack',
             class: 'Clinical Finding',
             domain: 'Condition',
             vocabulary: 'ICD10 CM',
           },
+        ],
+      },
+      searchValuesetContent: {
+        headers: [
+          { text: 'Code', value: 'conceptCode' },
+          { text: 'Name', value: 'conceptName' },
+          { text: 'Class', value: 'class' },
+          { text: 'Domain', value: 'domain' },
+          { text: 'Vocabulary', value: 'vocabulary' },
+          { text: 'Descendants', align: 'center', value: 'action' },
+        ],
+        rows: [
           {
-            conceptId: '213235',
-            conceptCode: '344-4',
-            conceptName: 'Heart Muscle Disease',
+            conceptId: '23234',
+            conceptCode: '344-2',
+            conceptName: 'Ischemic Attack',
+            class: 'Clinical Finding',
+            domain: 'Condition',
+            vocabulary: 'ICD10 CM',
+          },
+          {
+            conceptId: '213',
+            conceptCode: '344-2',
+            conceptName: 'Transient Ischemic Attack',
+            class: 'Clinical Finding',
+            domain: 'Condition',
+            vocabulary: 'ICD10 CM',
+          },
+          {
+            conceptId: '21333',
+            conceptCode: '344-3',
+            conceptName: 'Heart Attack',
+            class: 'Clinical Finding',
+            domain: 'Condition',
+            vocabulary: 'ICD10 CM',
+          },
+        ],
+      },
+      selectedValuesetContent: {
+        headers: [
+          {
+            text: 'Action',
+            value: 'action',
+          },
+          { text: 'Code', value: 'conceptCode' },
+          { text: 'Name', value: 'conceptName' },
+          { text: 'Class', value: 'class' },
+          { text: 'Domain', value: 'domain' },
+          { text: 'Vocabulary', value: 'vocabulary' },
+        ],
+        rows: [
+          {
+            action: true,
+            conceptId: '213234',
+            conceptCode: '344-2',
+            conceptName: 'Transient Ischemic Attack',
+            class: 'Clinical Finding',
+            domain: 'Condition',
+            vocabulary: 'ICD10 CM',
+          },
+          {
+            action: true,
+            conceptId: '213233',
+            conceptCode: '344-3',
+            conceptName: 'Heart Attack',
             class: 'Clinical Finding',
             domain: 'Condition',
             vocabulary: 'ICD10 CM',
@@ -567,5 +430,11 @@ export default {
   text-align: center;
   margin-top: 30px;
   margin-bottom: 5px;
+}
+.descendant {
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
 }
 </style>
