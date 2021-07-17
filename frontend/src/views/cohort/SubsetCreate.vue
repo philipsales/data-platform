@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <go-back-header :headerTitle="headerTitle"></go-back-header>
     <v-stepper v-model="e1">
       <v-stepper-header>
@@ -23,165 +23,186 @@
           <small>Verify the final subset list</small>
         </v-stepper-step>
         <v-divider></v-divider>
-    </v-stepper-header>
+      </v-stepper-header>
 
       <v-stepper-items>
       <!-- STEP 1 -->
-      <v-stepper-content step="1">
-        <v-row class="" style="min-height: 400px">
-          <v-col cols="12" style="background-color: gree">
-           <form>
-            <v-container fluid>
-              <h2 class="form-subheader">Subset Name</h2>
+        <v-stepper-content step="1">
+          <v-row class="" style="min-height: 400px">
+            <v-col cols="12" style="background-color: gree">
+            <form>
+                <br>
                 <v-row align="center">
                   <v-col
                     class="d-flex"
-                    cols="12"
-                    sm="11">
-                  <v-text-field
-                    label="Subset Name"
-                    class="d-flex">
-                    required></v-text-field>
+                    cols="6"
+                    sm="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      label="Subset Name"
+                      class="d-flex">
+                      required></v-text-field>
+                  </v-col>
+                  <v-col
+                    class="d-flex"
+                    cols="6"
+                    sm="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      label="Description"
+                      class="d-flex">
+                      required></v-text-field>
                   </v-col>
                 </v-row>
 
-              <h2 class="form-subheader">Description</h2>
+                <v-row align="center">
+                  <v-col
+                    cols="6"
+                    sm="6">
+                  <h3 class="form-subheader">Domain</h3>
+                  </v-col>
+                  <v-col
+                    cols="6"
+                    sm="6">
+                  <h3 class="form-subheader">Vocabulary</h3>
+                  </v-col>
+                </v-row>
+
                 <v-row align="center">
                   <v-col
                     class="d-flex"
-                    cols="12"
-                    sm="11">
-                  <v-text-field
-                    label="Description"
-                    class="d-flex">
-                    required></v-text-field>
+                    cols="6"
+                    style="background-color:ed"
+                    sm="6">
+                    <div class="mr-4 ml-4">
+                      <v-layout row wrap>
+                        <v-flex v-for="(domain,index) in domains"
+                          :key="index" xs6>
+                          <v-checkbox light
+                            :label="domain.label"
+                            :value="domain.value" >
+                          </v-checkbox>
+                        </v-flex>
+                      </v-layout>
+                    </div>
+                  </v-col>
+                  <v-col
+                    class="d-flex"
+                    cols="6"
+                    sm="6">
+                    <div class="mr-4 ml-4">
+                      <v-layout row wrap>
+                        <v-flex v-for="(vocabulary,index) in vocabularies" :key="index" xs6>
+                          <v-checkbox light
+                            :label="vocabulary.label"
+                            :value="vocabulary.value" >
+                          </v-checkbox>
+                        </v-flex>
+                      </v-layout>
+                    </div>
                   </v-col>
                 </v-row>
 
-              <h2 class="form-subheader">Domain</h2>
-                <div class="mr-4 ml-4">
-                  <v-layout row wrap>
-                    <v-flex v-for="(domain,index) in domains" :key="index" xs6>
-                      <v-checkbox light
-                        :label="domain.label"
-                        :value="domain.value" >
-                      </v-checkbox>
-                    </v-flex>
-                  </v-layout>
-                </div>
-                <br>
+                <v-btn
+                  color="continue-button primary"
+                  class="mr-4"
+                  @click="e1 = 2">
+                  Continue
+                </v-btn>
+              </form>
+            </v-col>
 
-              <h2 class="form-subheader">Vocabulary</h2>
-                <div class="mr-4 ml-4">
-                  <v-layout row wrap>
-                    <v-flex v-for="(vocabulary,index) in vocabularies" :key="index" xs6>
-                      <v-checkbox light
-                        :label="vocabulary.label"
-                        :value="vocabulary.value" >
-                      </v-checkbox>
-                    </v-flex>
-                  </v-layout>
-                </div>
-                <br>
+          </v-row>
+        </v-stepper-content>
 
-            </v-container>
-              <v-btn
-                color="primary"
-                class="mr-4"
-                @click="e1 = 2">
-                Continue
-              </v-btn>
-            </form>
-          </v-col>
-
-        </v-row>
-      </v-stepper-content>
-
-      <!-- STEP 2 -->
-      <v-stepper-content step="2">
-        <v-row class="" style="">
-          <v-col cols="6" style="background-color: ed">
-          <h2 class="form-subheader">Search Concepts</h2>
-            <v-text-field
-              v-model="search"
-              prepend-inner-icon="mdi-magnify"
-              label="Search"
-              single-line
-              hide-details
-            ></v-text-field>
-            <br>
+        <!-- STEP 2 -->
+        <v-stepper-content step="2">
+          <v-row class="" style="">
+            <v-col cols="6" style="background-color: ed">
+            <h2 class="form-subheader">Search Concepts</h2>
+              <v-text-field
+                v-model="search"
+                prepend-inner-icon="mdi-magnify"
+                label="Search"
+                single-line
+                hide-details
+              ></v-text-field>
+              <br>
+                <v-data-table
+                  :headers="searchValuesetContent.headers"
+                  :items="searchValuesetContent.rows"
+                  item-key="conceptId"
+                  show-select
+                  :items-per-page="5"
+                  class="elevation-1">
+                  <template v-slot:item.action="{ item }">
+                    <a href="" class="descendant">
+                    <v-icon color="blue darken-1"
+                      v-model="item.action"
+                      text >mdi-magnify</v-icon>
+                    </a>
+                  </template>
+                </v-data-table>
+            </v-col>
+            <v-col cols="6" style="background-color: ed">
+              <h2 class="form-subheader">Selected Concepts</h2>
+              <br> <br> <br>
               <v-data-table
-                :headers="searchValuesetContent.headers"
-                :items="searchValuesetContent.rows"
-                item-key="conceptId"
-                show-select
+                :headers="selectedValuesetContent.headers"
+                :items="selectedValuesetContent.rows"
                 :items-per-page="5"
                 class="elevation-1">
                 <template v-slot:item.action="{ item }">
-                  <a href="" class="descendant">
                   <v-icon color="blue darken-1"
                     v-model="item.action"
-                    text >mdi-magnify</v-icon>
-                  </a>
+                    text >mdi-delete</v-icon>
                 </template>
               </v-data-table>
-          </v-col>
-          <v-col cols="6" style="background-color: ed">
-            <h2 class="form-subheader">Selected Concepts</h2>
-            <br> <br> <br>
+            </v-col>
+          </v-row>
+
+          <v-row class="" style="">
+          </v-row>
+          <br> <br>
+          <v-btn
+            color="primary"
+            @click="e1 = 3">
+            Continue
+          </v-btn>
+          <v-btn text
+            @click="e1 = 1">
+            Back
+          </v-btn>
+
+        </v-stepper-content>
+
+        <v-stepper-content step="3">
+          <h2 class="form-subheader">Final Subsets: Cardiovasuclar Disease</h2>
             <v-data-table
-              :headers="selectedValuesetContent.headers"
-              :items="selectedValuesetContent.rows"
+              :headers="valuesetContent.headers"
+              :items="valuesetContent.rows"
               :items-per-page="5"
+              :search="search"
               class="elevation-1">
-              <template v-slot:item.action="{ item }">
-                <v-icon color="blue darken-1"
-                  v-model="item.action"
-                  text >mdi-delete</v-icon>
-              </template>
-            </v-data-table>
-          </v-col>
-        </v-row>
+            ></v-data-table>
+          <br> <br>
+          <v-btn
+            color="primary"
+            @click="e1 = 3">
+            Continue
+          </v-btn>
 
-        <v-row class="" style="">
-        </v-row>
-        <br> <br>
-        <v-btn
-          color="primary"
-          @click="e1 = 3">
-          Continue
-        </v-btn>
-        <v-btn text
-          @click="e1 = 1">
-          Back
-        </v-btn>
+          <v-btn text
+            @click="e1 = 2">
+            Back
+          </v-btn>
+        </v-stepper-content>
 
-      </v-stepper-content>
-
-      <v-stepper-content step="3">
-        <h2 class="form-subheader">Final Subsets: Cardiovasuclar Disease</h2>
-          <v-data-table
-            :headers="valuesetContent.headers"
-            :items="valuesetContent.rows"
-            :items-per-page="5"
-            :search="search"
-            class="elevation-1">
-          ></v-data-table>
-        <br> <br>
-        <v-btn
-          color="primary"
-          @click="e1 = 3">
-          Continue
-        </v-btn>
-
-        <v-btn text
-          @click="e1 = 2">
-          Back
-        </v-btn>
-      </v-stepper-content>
-    </v-stepper-items>
-  </v-stepper>
-  </div>
+      </v-stepper-items>
+    </v-stepper>
+  </v-container>
 </template>
 
 <script>
@@ -423,8 +444,6 @@ export default {
 <style scoped>
 .form-subheader {
   text-align:left;
-  margin-top: 30px;
-  margin-bottom: 5px;
 }
 .result-subheader {
   text-align: center;
@@ -436,5 +455,8 @@ export default {
   text-align: center;
   text-decoration: none;
   color: inherit;
+}
+.continue-button {
+  margin-top: 40px;
 }
 </style>

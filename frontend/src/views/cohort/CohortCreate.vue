@@ -216,11 +216,11 @@
               <br>
                 <v-row align="center" style="margin-left: 20px;">
                   <v-layout child-flex>
-                  <v-data-table
-                    :headers="subsetContent.headers"
-                    :items="subsetContent.rows"
-                    class="elevation-1"
-                  ></v-data-table>
+                    <v-data-table
+                      :headers="subsetContent.headers"
+                      :items="subsetContent.rows"
+                      class="elevation-1"
+                    ></v-data-table>
                   </v-layout>
                 </v-row>
               </v-col>

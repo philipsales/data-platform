@@ -1,52 +1,118 @@
 <template>
-  <div class="terminology-page">
+  <v-container>
   <go-back-header :headerTitle="headerTitle"></go-back-header>
-    <v-row class="" style="min-height: 600px">
-      <v-col cols="6" style="background-color: geen">
-        <div style="background: re">
-          <v-row >
-            <v-col
-              class="d-flex"
-              cols="12"
-              sm="6">
-            <v-text-field
-              prepend-inner-icon="mdi-magnify"
-              single-line
-              label="Type to Search"
-              outlined
-              class="rounded-r-0 rounded-l-md d-flex"
-              required></v-text-field>
-            </v-col>
-            <v-col
-              class="d-flex"
-              cols="12"
-              style="margin-left: -25px"
-              sm="4">
-              <v-select
-                class="rounded-l-0 rounded-r-md"
-                :items="vocabularies"
-                :model="vocabularies"
-                name="label"
-                item-text="label"
+    <v-card>
+      <v-row class="" style="min-height: 600px">
+        <v-col cols="8" class="valueset-search">
+            <v-row no-gutters>
+              <v-col
+                class="d-flex"
+                cols="12"
+                xl="4"
+                sm="5">
+              <v-text-field
+                prepend-inner-icon="mdi-magnify"
+                single-line
                 outlined
-                label="Domain">
-              </v-select>
-            </v-col>
-          </v-row>
-        </div>
-      </v-col>
-      <v-divider vertical inset></v-divider>
-      <v-col cols="6" style="background-color: blu">
-        <div style="background: re">
-          <v-card
-            color="lighten-1"
-            class="mb-12"
-            height="200px">
-          </v-card>
-        </div>
-      </v-col>
+                dense
+                label="Type to Search"
+                class="rounded-r-0 rounded-l-md d-flex"
+                required></v-text-field>
+              </v-col>
+              <v-col
+                class="d-flex"
+                cols="12"
+                style="margin-left: -1px"
+                xl="2"
+                sm="3">
+                <v-select
+                  class="rounded-l-0 rounded-r-md"
+                  :items="vocabularies"
+                  :model="vocabularies"
+                  name="label"
+                  item-text="label"
+                  dense
+                  outlined
+                  label="Domain">
+                </v-select>
+              </v-col>
+            </v-row>
+            <v-row align="center">
+              <v-layout child-flex>
+                <v-data-table
+                  :headers="subsetContent.headers"
+                  :items="subsetContent.rows"
+                  class="elevation-1"
+                ></v-data-table>
+              </v-layout>
+            </v-row>
+        </v-col>
+        <v-divider vertical inset></v-divider>
+        <v-col cols="4" class="valueset-input">
+          <form style="background-color: rd">
+            <v-text-field
+              outlined
+              dense
+              label="Drug Code"
+              required
+            ></v-text-field>
+            <v-text-field
+              outlined
+              dense
+              label="Drug Code Type"
+              required
+            ></v-text-field>
+            <v-text-field
+              outlined
+              dense
+              label="Preferred Name"
+              required
+            ></v-text-field>
+            <v-text-field
+              outlined
+              dense
+              label="Generic Name"
+              required
+            ></v-text-field>
+            <v-text-field
+              outlined
+              dense
+              label="Brand Name"
+              required
+            ></v-text-field>
+            <v-text-field
+              outlined
+              dense
+              label="Strength"
+              required
+            ></v-text-field>
+            <v-text-field
+              outlined
+              dense
+              label="Form"
+              required
+            ></v-text-field>
+            <v-text-field
+              outlined
+              dense
+              label="Route"
+              required
+            ></v-text-field>
+            <v-text-field
+              outlined
+              dense
+              label="Content"
+              required
+            ></v-text-field>
+            <v-btn
+              class="mr-4 primary">
+              submit
+            </v-btn>
+            </form>
+        </v-col>
     </v-row>
-  </div>
+    </v-card>
+  </v-container>
 </template>
 
 <script>
@@ -64,7 +130,7 @@ export default {
       search: '',
       headerTitle: 'Create Valueset',
       vocabularies: [
-        { label: 'RxNorm', value: 'rxnorm' },
+        { label: 'RxNORM', value: 'rxnorm' },
         { label: 'ICD10 CM', value: 'icd10cm' },
         { label: 'SNOMED CT', value: 'snomedct' },
         { label: 'LOINC', value: 'loinc' },
@@ -91,30 +157,115 @@ export default {
           { text: 'Form', value: 'form' },
           { text: 'Route', value: 'route' },
           { text: 'Content', value: 'content' },
-          { text: 'Dosage', value: 'dosage' },
-          { text: 'Amount', value: 'amount' },
-          { text: 'Batch expiration date', value: 'batchExpirationDate' },
-          { text: 'Batch lot number', value: 'batchExpirationDate' },
           { text: 'Status', value: 'status' },
           { text: 'Reference URL', value: 'referenceURL' },
           { text: 'Reference Description', value: 'referenceDescription' },
           { text: 'Substance Category', value: 'substanceCategory' },
+          { text: 'Dosage', value: 'dosage' },
+          { text: 'Amount', value: 'amount' },
+          { text: 'Batch expiration date', value: 'batchExpirationDate' },
+          { text: 'Batch lot number', value: 'batchLotNumber' },
         ],
         rows: [
           {
-            name: 'Cardiovascular Diseases',
+            drugCode: '0123$343',
+            drugCodeType: 'RxNorm Extension',
+            description: 'paracetamol 200mg Oral Tablet [Biogesic]',
+            preferredName: 'paracetamol 200mg Oral Tablet [Biogesic]',
+            brandName: 'Biogesic',
+            genericName: 'paracetamol',
+            strength: '200 mg',
+            form: 'Tablet',
+            route: 'Oral',
+            content: 'paracetamol',
+            dosage: '',
+            amount: '',
+            batchExpirationDate: '',
+            batchLotNumber: '',
+            status: '',
+            referenceURL: 'https://www.fda.gov.ph',
+            referenceDescription: 'Food and Drug Philippines',
+            substanceCategory: 'Controlled',
           },
           {
-            name: 'NSAIDS Medications',
+            drugCode: '0123$343',
+            drugCodeType: 'RxNorm Extension',
+            description: 'paracetamol 200mg Oral Tablet [Biogesic]',
+            preferredName: 'paracetamol 200mg Oral Tablet [Biogesic]',
+            brandName: 'Biogesic',
+            genericName: 'paracetamol',
+            strength: '200 mg',
+            form: 'Tablet',
+            route: 'Oral',
+            content: 'paracetamol',
+            dosage: '',
+            amount: '',
+            batchExpirationDate: '',
+            batchLotNumber: '',
+            status: '',
+            referenceURL: 'https://www.fda.gov.ph',
+            referenceDescription: 'Food and Drug Philippines',
+            substanceCategory: 'Controlled',
           },
           {
-            name: 'Kidney Disease',
+            drugCode: '0123$343',
+            drugCodeType: 'RxNorm Extension',
+            description: 'paracetamol 200mg Oral Tablet [Biogesic]',
+            preferredName: 'paracetamol 200mg Oral Tablet [Biogesic]',
+            brandName: 'Biogesic',
+            genericName: 'paracetamol',
+            strength: '200 mg',
+            form: 'Tablet',
+            route: 'Oral',
+            content: 'paracetamol',
+            dosage: '',
+            amount: '',
+            batchExpirationDate: '',
+            batchLotNumber: '',
+            status: '',
+            referenceURL: 'https://www.fda.gov.ph',
+            referenceDescription: 'Food and Drug Philippines',
+            substanceCategory: 'Controlled',
           },
           {
-            name: 'Diabetes Medications',
+            drugCode: '0123$343',
+            drugCodeType: 'RxNorm Extension',
+            description: 'paracetamol 200mg Oral Tablet [Biogesic]',
+            preferredName: 'paracetamol 200mg Oral Tablet [Biogesic]',
+            brandName: 'Biogesic',
+            genericName: 'paracetamol',
+            strength: '200 mg',
+            form: 'Tablet',
+            route: 'Oral',
+            content: 'paracetamol',
+            dosage: '',
+            amount: '',
+            batchExpirationDate: '',
+            batchLotNumber: '',
+            status: '',
+            referenceURL: 'https://www.fda.gov.ph',
+            referenceDescription: 'Food and Drug Philippines',
+            substanceCategory: 'Controlled',
           },
           {
-            name: 'Ulcer Medications',
+            drugCode: '0123$343',
+            drugCodeType: 'RxNorm Extension',
+            description: 'paracetamol 200mg Oral Tablet [Biogesic]',
+            preferredName: 'paracetamol 200mg Oral Tablet [Biogesic]',
+            brandName: 'Biogesic',
+            genericName: 'paracetamol',
+            strength: '200 mg',
+            form: 'Tablet',
+            route: 'Oral',
+            content: 'paracetamol',
+            dosage: '',
+            amount: '',
+            batchExpirationDate: '',
+            batchLotNumber: '',
+            status: '',
+            referenceURL: 'https://www.fda.gov.ph',
+            referenceDescription: 'Food and Drug Philippines',
+            substanceCategory: 'Controlled',
           },
         ],
       },
@@ -131,5 +282,11 @@ export default {
 .page-sidebar {
   z-index: 1;
   margin-top:10px;
+}
+.valueset-input {
+  padding: 40px;
+}
+.valueset-search {
+  padding: 40px;
 }
 </style>

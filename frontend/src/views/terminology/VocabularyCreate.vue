@@ -1,9 +1,9 @@
 <template>
-  <div class="terminology-page">
+  <v-container>
     <go-back-header :headerTitle="headerTitle"></go-back-header>
-<v-card>
+    <v-card>
     <v-tabs vertical>
-      <v-tab>
+      <v-tab class="vocabulary-server">
         <v-icon left>
           mdi-lock
         </v-icon>
@@ -24,63 +24,56 @@
 
       <v-tab-item>
         <v-card flat>
-          <v-card-text>
-           <form>
+          <v-col cols="10">
+          <v-card-text md="10" style="background-color: geen">
+           <form style="background-color: rd">
             <v-text-field
-              v-model="name"
-              :error-messages="nameErrors"
-              :counter="10"
+              outlined
+              dense
               label="Vocabulary Name"
               required
-              @input="$v.name.$touch()"
-              @blur="$v.name.$touch()"
             ></v-text-field>
             <v-text-field
-              v-model="indexName"
-              :error-messages="nameErrors"
-              :counter="10"
+              outlined
+              dense
               label="Index Name"
               required
             ></v-text-field>
             <v-text-field
-              v-model="semanticVersion"
-              :error-messages="nameErrors"
-              :counter="10"
+              outlined
+              dense
               label="Semantic Name"
               required
             ></v-text-field>
             <v-text-field
-              v-model="schema"
-              :error-messages="nameErrors"
-              :counter="10"
+              outlined
+              dense
               label="Google Drive Schema URL"
               required
             ></v-text-field>
             <v-text-field
-              v-model="datasource"
-              :error-messages="nameErrors"
-              :counter="10"
+              outlined
+              dense
               label="Google Drive Datasource URL"
               required
             ></v-text-field>
             <v-text-field
-              v-model="datasource"
-              :error-messages="nameErrors"
-              :counter="10"
+              outlined
+              dense
               label="Destination URL"
               required
             ></v-text-field>
             <v-btn
-              class="mr-4"
-              @click="submit"
-            >
+              class="mr-4">
               submit
             </v-btn>
-            <v-btn @click="clear">
+            <v-btn
+              class="mr-4">
               clear
             </v-btn>
             </form>
           </v-card-text>
+          </v-col>
         </v-card>
       </v-tab-item>
       <v-tab-item>
@@ -118,7 +111,7 @@
       </v-tab-item>
     </v-tabs>
   </v-card>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -196,19 +189,8 @@ export default {
 };
 </script>
 <style scoped>
-.terminology-page {
-  width: 100%;
-  background-color: ed;
-  height: 1000px;
+.vocabulary-server{
+  padding: 30px;
 }
-.page-sidebar {
-  z-index: 1;
-  margin-top:10px;
-}
-.page-label {
-  position: left;
-}
-.nav-link {
-  text-decoration: none;
-}
+
 </style>
