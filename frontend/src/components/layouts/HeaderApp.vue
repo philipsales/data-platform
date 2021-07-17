@@ -23,12 +23,15 @@
       </v-btn>
     </v-app-bar>
     <v-overlay :value="drawer" z-index="4"> </v-overlay>
-    <v-navigation-drawer v-model="drawer"
+    <v-navigation-drawer
+        v-model="drawer"
         fixed
-        :style="{ top: $vuetify.application.top + 'px', zIndex: 6 }"
+        class="main-drawer"
+        :style="{ top: $vuetify.application.top + 'px', zIndex: 6, width: 293, }"
         >
-      <v-list dense>
+      <v-list >
         <v-list-item
+          class="app-list-item"
           v-for="item in items"
           :key="item.title"
           @click.stop="drawer = !drawer"
@@ -95,10 +98,12 @@ export default {
   background: aqua;
   margin-left: -80px;
 }
-.one {
-  height: 800px;
-  background: red;
-  float: left;
+.app-list-item {
+  padding: 0 21px;
+  height: 20px;
+}
+.main-drawer {
+  width: 293px;
 }
 .nav-link {
   text-decoration: none;

@@ -35,7 +35,12 @@ export default {
   margin-top: -70px;
   /* height: 1000px; */
 }
-
+.generic-container {
+  min-width: 100%;
+}
+.aside {
+  width: 69px;
+}
 </style>
 
 <style scoped>

@@ -10,8 +10,8 @@
         <v-row> </v-row>
       </v-col>
     </v-row>
-     <div class="container">
-      <aside class="aside">
+     <div class="container" color="red">
+      <aside class="aside sidebar-aside">
         <router-view name="sidebar" :content="sidebarContent"></router-view>
       </aside>
       <main>
@@ -68,7 +68,8 @@ export default {
   display: flex;
   vertical-align: middle;
 }
-.aside {
+.sidebar-aside {
   background-color: grey;
+  color: red;
 }
 </style>

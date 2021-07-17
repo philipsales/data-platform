@@ -1,8 +1,8 @@
 <template>
-  <v-container>
+  <v-container class="generic-container">
   <go-back-header :headerTitle="headerTitle"></go-back-header>
     <v-card>
-      <v-row class="" style="min-height: 600px">
+      <v-row class="">
         <v-col cols="8" class="valueset-search">
             <v-row no-gutters>
               <v-col

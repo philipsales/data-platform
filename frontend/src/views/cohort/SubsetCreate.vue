@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="generic-container">
     <go-back-header :headerTitle="headerTitle"></go-back-header>
     <v-stepper v-model="e1">
       <v-stepper-header>
@@ -168,10 +168,12 @@
           <br> <br>
           <v-btn
             color="primary"
+            class="mr-4"
             @click="e1 = 3">
             Continue
           </v-btn>
           <v-btn text
+            class="mr-4"
             @click="e1 = 1">
             Back
           </v-btn>
@@ -190,8 +192,9 @@
           <br> <br>
           <v-btn
             color="primary"
+            class="mr-4"
             @click="e1 = 3">
-            Continue
+            Submit
           </v-btn>
 
           <v-btn text
@@ -287,7 +290,7 @@ export default {
         ],
         rows: [
           {
-            conceptId: '23234',
+            conceptId: '2234',
             conceptCode: '344-2',
             conceptName: 'Ischemic Attack',
             class: 'Clinical Finding',
@@ -303,7 +306,31 @@ export default {
             vocabulary: 'ICD10 CM',
           },
           {
-            conceptId: '21333',
+            conceptId: '2133',
+            conceptCode: '344-3',
+            conceptName: 'Heart Attack',
+            class: 'Clinical Finding',
+            domain: 'Condition',
+            vocabulary: 'ICD10 CM',
+          },
+          {
+            conceptId: '2234',
+            conceptCode: '344-2',
+            conceptName: 'Ischemic Attack',
+            class: 'Clinical Finding',
+            domain: 'Condition',
+            vocabulary: 'ICD10 CM',
+          },
+          {
+            conceptId: '213',
+            conceptCode: '344-2',
+            conceptName: 'Transient Ischemic Attack',
+            class: 'Clinical Finding',
+            domain: 'Condition',
+            vocabulary: 'ICD10 CM',
+          },
+          {
+            conceptId: '2333',
             conceptCode: '344-3',
             conceptName: 'Heart Attack',
             class: 'Clinical Finding',

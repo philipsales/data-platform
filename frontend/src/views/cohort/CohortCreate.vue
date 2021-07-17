@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="generic-container">
     <go-back-header :headerTitle="headerTitle"></go-back-header>
       <v-stepper v-model="e1" cols="12" style="background-color: pnk">
         <v-stepper-header>

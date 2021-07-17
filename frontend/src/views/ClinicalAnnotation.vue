@@ -11,14 +11,15 @@
       </v-col>
     </v-row>
      <div class="container">
-      <aside class="aside">
-        <router-view name="sidebar" :content="sidebarContent"></router-view>
+      <aside class="aside" >
+        <router-view
+          name="sidebar"
+          class="sidebar-standard" :content="sidebarContent"></router-view>
       </aside>
       <main>
         <router-view name="default"></router-view>
       </main>
     </div>
-
   </div>
 </template>
 
@@ -71,7 +72,7 @@ export default {
   display: flex;
   vertical-align: middle;
 }
-.aside {
-  background-color: grey;
+.sidebar-standard {
+  background-color: red;
 }
 </style>

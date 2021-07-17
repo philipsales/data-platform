@@ -14,12 +14,12 @@
       <v-btn text class="create-button">
         <router-link
           class="create-link"
-          :to="{name: content.link}" exact
+          :to="{name: content.link}"
         >
-        <h3>
+        <h4>
         <v-icon>mdi-plus-box</v-icon>
-        &nbsp; Create {{content.buttonName}}
-        </h3>
+        Create {{content.buttonName}}
+        </h4>
         </router-link>
       </v-btn>
     </v-col>
@@ -56,6 +56,7 @@ export default {
   margin-top: -3px;
   border: none;
   background: none;
+  padding-top: 20px;
   outline: none;
   letter-spacing: 0;
 }

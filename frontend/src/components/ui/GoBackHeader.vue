@@ -1,7 +1,7 @@
 <template>
   <v-row class="back-header">
     <go-back-button></go-back-button>
-    <h3 class="font-weight-bold"> &nbsp; {{headerTitle}} </h3>
+    <h3 class="font-weight-bold"> &nbsp; &nbsp; &nbsp; {{headerTitle}} </h3>
   </v-row>
 </template>
 
@@ -27,7 +27,6 @@ export default {
 <style scoped>
 .back-header {
   height: 50px;
-  margin: 5px 5px -10px 0px;
-  background-color: pik;
+  margin: 1px 5px 10px 3px;
 }
 </style>
