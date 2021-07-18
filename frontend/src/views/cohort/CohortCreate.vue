@@ -89,9 +89,10 @@
                           label="Value">
                         </v-select>
                       </v-col>
-                      <v-text @click="removeMultipleField(index, refinements)">
+                      <v-btn class="dynamic-delete-button"
+                      @click="removeMultipleField(index, refinements)">
                         <v-icon outlined dense>mdi-delete</v-icon>
-                      </v-text>
+                      </v-btn>
                     </v-row>
                   </div>
                   <v-btn @click="addDemographics" class="add-button primary">add</v-btn>
@@ -136,9 +137,10 @@
                             label="Subset">
                           </v-select>
                         </v-col>
-                        <v-text @click="removeMultipleField(index, refinements)">
+                        <v-btn class="dynamic-delete-button"
+                          @click="removeMultipleField(index, refinements)">
                           <v-icon outlined dense>mdi-delete</v-icon>
-                        </v-text>
+                        </v-btn>
                       </v-row>
                     </div>
                     <v-btn @click="addMultipleField" class="add-button primary">add</v-btn>

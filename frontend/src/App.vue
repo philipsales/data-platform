@@ -41,6 +41,10 @@ export default {
 .aside {
   width: 69px;
 }
+.dynamic-delete-button {
+  margin-top: -30px;
+  cursor: pointer;
+}
 </style>
 
 <style scoped>

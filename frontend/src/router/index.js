@@ -12,6 +12,7 @@ import ValuesetList from '../views/terminology/ValuesetList.vue';
 
 import ClinicalAnnotation from '../views/ClinicalAnnotation.vue';
 import ProjectList from '../views/annotation/ProjectList.vue';
+import ProjectCreate from '../views/annotation/ProjectCreate.vue';
 import ReviewList from '../views/annotation/ReviewList.vue';
 
 import CohortBuilder from '../views/CohortBuilder.vue';
@@ -96,6 +97,10 @@ export default new Router({
         },
       },
     ],
+  }, {
+    path: '/annotation/create',
+    name: 'ProjectCreate',
+    component: ProjectCreate,
   }, {
     path: '/build',
     component: CohortBuilder,
