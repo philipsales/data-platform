@@ -1,176 +1,204 @@
 <template>
   <v-container class="generic-container">
     <go-back-header :headerTitle="headerTitle"></go-back-header>
-<v-stepper v-model="e1">
-    <v-stepper-header>
-      <v-stepper-step
-        :complete="e1 > 1"
-        step="1"
-      >
-      <h2>Configure Project</h2>
-      <small>Create project scope, type and description</small>
-      </v-stepper-step>
-
-      <v-divider></v-divider>
-
-      <v-stepper-step
-        :complete="e1 > 2"
-        step="2"
-      >
-      <h2>Select Annotation Type</h2>
-      <small>Select task type</small>
-      </v-stepper-step>
-
-      <v-divider></v-divider>
-
-      <v-stepper-step step="3">
-      <h2>Set Labels</h2>
-      <small>Define the labels settings</small>
-      </v-stepper-step>
-    </v-stepper-header>
-
-    <v-stepper-items>
-      <v-stepper-content step="1">
-        <v-row>
-          <v-col
-            cols="12"
-            sm="6">
-          <v-text-field
-            label="Cohort Name"
-            outlined
-            dense
-            class="">
-            </v-text-field>
-            <v-select
-              v-model="value"
-              :items="dataSource"
-              dense
-              outlined
-              attach
-              label="Data Source"
-              multiple
-            ></v-select>
-            <v-select
-              v-model="value"
-              :items="dataSource"
-              dense
-              outlined
-              attach
-              label="Subset"
-              multiple
-            ></v-select>
-          </v-col>
-        </v-row>
-        <br><br>
-        <v-btn
-          color="primary"
-          class="mr-4"
-          @click="e1 = 2"
+    <v-stepper v-model="e1" class="rounded-0">
+      <v-stepper-header>
+        <v-stepper-step
+          :complete="e1 > 1"
+          step="1"
         >
-          Continue
-        </v-btn>
-      </v-stepper-content>
+        <h2>Configure Project</h2>
+        <small>Create project scope, type and description</small>
+        </v-stepper-step>
 
-      <v-stepper-content step="2">
-         <v-row>
+        <v-divider></v-divider>
+
+        <v-stepper-step
+          :complete="e1 > 2"
+          step="2"
+        >
+        <h2>Select Annotation Type</h2>
+        <small>Select task type</small>
+        </v-stepper-step>
+
+        <v-divider></v-divider>
+
+        <v-stepper-step step="3">
+        <h2>Set Labels</h2>
+        <small>Define the labels settings</small>
+        </v-stepper-step>
+      </v-stepper-header>
+
+      <v-stepper-items>
+        <v-stepper-content step="1">
+          <v-row>
             <v-col
               cols="12"
-              sm="12">
-            <h3 class="form-subheader">Annotation Type</h3>
-            <v-row v-for="(annotation,index) in annotations"
-              :key="index">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <v-checkbox
-                :label="annotation.label"
-                :value="annotation.value" >
-              </v-checkbox>
-            </v-row>
+              sm="6">
+            <v-text-field
+              label="Project Name"
+              outlined
+              dense
+              class="">
+              </v-text-field>
+              <v-select
+                v-model="value"
+                :items="dataSource"
+                dense
+                outlined
+                attach
+                label="Data Source"
+                multiple
+              ></v-select>
+            <v-text-field
+              label="Key words"
+              outlined
+              dense
+              class="">
+              </v-text-field>
             </v-col>
           </v-row>
-        <br><br>
-        <v-btn
-          color="primary"
-          class="mr-4"
-          @click="e1 = 3"
-        >
-          Continue
-        </v-btn>
-        <v-btn
-          class="mr-4"
-          @click="e1 = 1"
-          text>
-          Back
-        </v-btn>
-      </v-stepper-content>
+          <br><br>
+          <v-btn
+            color="primary"
+            class="mr-4"
+            @click="e1 = 2"
+          >
+            Continue
+          </v-btn>
+        </v-stepper-content>
 
-      <v-stepper-content step="3">
-         <v-row>
-          <v-col
-            cols="12"
-            sm="6">
-              <h3 class="form-subheader">Labels</h3>
-              <div v-for="(refinement, index) in refinements"
-                :key=index>
-                <v-row align="center">
-                  <v-col
-                    class="d-flex"
-                    cols="12"
-                    sm="3">
-                    <v-text-field
+        <v-stepper-content step="2">
+          <v-row>
+              <v-col
+                cols="12"
+                sm="12">
+              <h3 class="form-subheader">Annotation Type</h3>
+              <v-row v-for="(annotation,index) in annotations"
+                :key="index">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <v-checkbox
+                  :label="annotation.label"
+                  :value="annotation.value" >
+                </v-checkbox>
+              </v-row>
+              </v-col>
+            </v-row>
+          <br><br>
+          <v-btn
+            color="primary"
+            class="mr-4"
+            @click="e1 = 3"
+          >
+            Continue
+          </v-btn>
+          <v-btn
+            class="mr-4"
+            @click="e1 = 1"
+            text>
+            Back
+          </v-btn>
+        </v-stepper-content>
+
+        <v-stepper-content step="3">
+          <v-row>
+            <v-col
+              cols="12"
+              sm="6">
+                <h3 class="form-subheader">Labels</h3>
+                <br>
+                <div v-for="(refinement, index) in refinements"
+                  :key=index>
+                  <v-row dense align="center" class="label-row">
+                    <v-col
+                      class="d-flex"
+                      cols="12"
+                      sm="4">
+                      <v-text-field
+                        outlined
+                        dense
+                        label="Label name">
+                      </v-text-field>
+                    </v-col>
+                    <v-col
+                      class="d-flex"
+                      cols="12"
+                      sm="3">
+                      <v-text-field
+                        outlined
+                        dense
+                        label="Shortcut key">
+                      </v-text-field>
+                    </v-col>
+                    <v-col
+                      class="d-flex"
+                      cols="12"
+                      sm="3">
+                      <v-text-field
+                        outlined
+                        dense
+                        label="Color">
+                      </v-text-field>
+                    </v-col>
+                    <v-btn text class="dynamic-delete-button"
+                      @click="removeMultipleField(index, refinements)">
+                      <v-icon>mdi-delete</v-icon>
+                    </v-btn>
+                  </v-row>
+                </div>
+                <v-spacer></v-spacer>
+                <v-btn @click="addMultipleField" class="add-button primary">add</v-btn>
+              </v-col>
+              <v-col
+              cols="12"
+              sm="6">
+                <h3 class="form-subheader">Preview</h3>
+                <br>
+                <v-row>
+
+                <span v-for="(label, index) in labelConfigurations"
+                  :key=index>
+                  <v-chip
+                      class="ma-1 label-box"
+                      label
                       outlined
-                      dense
-                      label="Label name">
-                    </v-text-field>
-                  </v-col>
-                  <v-col
-                    class="d-flex"
-                    cols="12"
-                    sm="4">
-                    <v-text-field
-                      outlined
-                      dense
-                      label="Keyboard shortcut">
-                    </v-text-field>
-                  </v-col>
-                  <v-col
-                    class="d-flex"
-                    cols="12"
-                    sm="4">
-                     <v-text-field
-                      outlined
-                      dense
-                      label="Color">
-                    </v-text-field>
-                  </v-col>
-                  <v-btn class="dynamic-delete-button"
-                    @click="removeMultipleField(index, refinements)">
-                    <v-icon>mdi-delete</v-icon>
-                  </v-btn>
+                      :border-color="label.color"
+                      :color="label.color"
+                    >
+                      <!-- <v-avatar
+                        label
+                        outlined
+                        class="darken-4"
+                      >
+                      </v-avatar> -->
+                      <strong> {{label.text}} <sup>[{{label.shortcut}}]</sup>
+                      </strong>
+                  </v-chip>
+                </span>
                 </v-row>
-              </div>
-              <v-spacer></v-spacer>
-              <v-btn @click="addMultipleField" class="add-button primary">add</v-btn>
-            </v-col>
-        </v-row>
-        <br> <br>
+              </v-col>
+          </v-row>
+          <br> <br>
 
-        <v-btn
-          color="primary"
-          class="mr-4"
-          @click="e1 = 1"
-        >
-          Submit
-        </v-btn>
+          <v-btn
+            color="primary"
+            class="mr-4"
+          >
+          <router-link class="nav-link"
+            :to="{name: 'ProjectWorkplace'}" >
+            Submit
+          </router-link>
+          </v-btn>
 
-        <v-btn
-          class="mr-4"
-          @click="e1 = 2"
-          text>
-          Back
-        </v-btn>
-      </v-stepper-content>
-    </v-stepper-items>
-  </v-stepper>
+          <v-btn
+            class="mr-4"
+            @click="e1 = 2"
+            text>
+            Back
+          </v-btn>
+        </v-stepper-content>
+      </v-stepper-items>
+    </v-stepper>
   </v-container>
 </template>
 
@@ -199,6 +227,12 @@ export default {
         { label: 'SNOMED CT', value: 'snomedct' },
         { label: 'LOINC', value: 'loinc' },
       ],
+      labelConfigurations: [
+        { text: 'medication', shortcut: '1', color: 'orange' },
+        { text: 'condition', shortcut: '2', color: 'purple' },
+        { text: 'laboratory test', shortcut: '3', color: 'indigo' },
+        { text: 'laboratory result', shortcut: '4', color: 'green' },
+      ],
       refinements: [{
         criteria: {
           value: '',
@@ -210,6 +244,11 @@ export default {
           value: '',
         },
       }],
+      dataSource: [
+        'The Medical City',
+        'Keralty',
+        'Medcheck',
+      ],
       subsetContent: {
         headers: [
           {
@@ -447,18 +486,17 @@ export default {
 .form-subheader {
   text-align:left;
 }
-.result-subheader {
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 5px;
-}
-.descendant {
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
-}
 .continue-button {
   margin-top: 40px;
+}
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  vertical-align: middle;
+}
+.label-row {
+  height: 60px;
+  background-color: rxed;
 }
 </style>

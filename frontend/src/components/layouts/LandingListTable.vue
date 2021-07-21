@@ -4,7 +4,7 @@
         :headers="content.headers"
         :items="content.rows"
         :items-per-page="5"
-        class="elevation-1"
+        class="elevation-1 rounded-0"
       ></v-data-table>
   </div>
 </template>

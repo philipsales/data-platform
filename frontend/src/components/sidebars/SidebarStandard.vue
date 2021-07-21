@@ -6,6 +6,7 @@
       expand-on-hover
       permanent
       class="sidebar"
+      height="120%"
     >
       <v-list>
         <v-list-item> </v-list-item>

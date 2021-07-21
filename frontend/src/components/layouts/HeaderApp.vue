@@ -27,7 +27,8 @@
         v-model="drawer"
         fixed
         class="main-drawer"
-        :style="{ top: $vuetify.application.top + 'px', zIndex: 6, width: 293, }"
+        :style="{ top: $vuetify.application.top + 'px', zIndex: 6, width: 293 }"
+        height="140%"
         >
       <v-list >
         <v-list-item

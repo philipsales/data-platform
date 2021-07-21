@@ -49,7 +49,7 @@ export default {
   margin-bottom: 20px;
   margin-left: 1px;
   background-color: pik;
-  width: 100%;
+  width: 120%;
 }
 .create-button {
   color: white;

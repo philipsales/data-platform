@@ -49,7 +49,7 @@
                   <v-col
                     class="d-flex"
                     cols="12"
-                    sm="5">
+                    sm="3">
                     <v-select
                       v-model="value"
                       :items="dataSource"
@@ -57,6 +57,20 @@
                       outlined
                       attach
                       label="Data Source"
+                      multiple
+                    ></v-select>
+                  </v-col>
+                   <v-col
+                    class="d-flex"
+                    cols="12"
+                    sm="3">
+                    <v-select
+                      v-model="value"
+                      :items="dataSource"
+                      dense
+                      outlined
+                      attach
+                      label="Clinic"
                       multiple
                     ></v-select>
                   </v-col>

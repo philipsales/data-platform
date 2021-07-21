@@ -1,8 +1,9 @@
 <template>
-  <v-app style="background: lue">
+  <v-app>
     <header-app></header-app>
     <v-main>
-      <v-container fluid style="background: yllow"
+      <v-container fluid style="background: #EEEEEE; height: 100%"
+
       class="pa-0 ma-0">
       <router-view></router-view>
       </v-container>
@@ -26,8 +27,8 @@ export default {
 </script>
 <style>
 .main-container {
-  /* background: blue;
-  color: blue; */
+  background: blue;
+  color: blue;
 }
 .generic-table-page {
   width: 103%;
