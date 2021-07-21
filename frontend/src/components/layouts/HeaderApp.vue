@@ -36,15 +36,16 @@
           v-for="item in items"
           :key="item.title"
           @click.stop="drawer = !drawer"
+          :to="{name: item.link}" exact
           link>
-        <router-link class="nav-link" :to="{name: item.link}" exact>
+        <!-- <router-link class="nav-link" :to="{name: item.link}" exact> -->
           <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
               <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
-        </router-link>
+        <!-- </router-link> -->
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
