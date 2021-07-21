@@ -12,7 +12,7 @@
     </v-row>
      <div class="container">
       <aside class="aside">
-        <router-view name="sidebar" :content="sidebarContent"></router-view>
+        <router-view name="sidebar" :contents="sidebarContent"></router-view>
       </aside>
       <main>
         <router-view name="default"></router-view>

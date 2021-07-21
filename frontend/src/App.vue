@@ -3,7 +3,6 @@
     <header-app></header-app>
     <v-main>
       <v-container fluid style="background: #EEEEEE; height: 100%"
-
       class="pa-0 ma-0">
       <router-view></router-view>
       </v-container>

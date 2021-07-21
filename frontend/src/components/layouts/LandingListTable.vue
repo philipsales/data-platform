@@ -1,8 +1,8 @@
 <template>
   <div>
       <v-data-table
-        :headers="content.headers"
-        :items="content.rows"
+        :headers="contents.headers"
+        :items="contents.rows"
         :items-per-page="5"
         class="elevation-1 rounded-0"
       ></v-data-table>
@@ -13,7 +13,7 @@
 export default {
   name: 'LandingListTable',
   props: {
-    content: {
+    contents: {
       headers: Array,
       rows: Array,
     },

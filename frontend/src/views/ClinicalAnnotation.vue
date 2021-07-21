@@ -14,7 +14,7 @@
       <aside class="aside" >
         <router-view
           name="sidebar"
-          class="sidebar-standard" :content="sidebarContent"></router-view>
+          class="sidebar-standard" :contents="sidebarContent"></router-view>
       </aside>
       <main>
         <router-view name="default"></router-view>

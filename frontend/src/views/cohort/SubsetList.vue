@@ -1,7 +1,7 @@
 <template>
   <v-container class="generic-table-page">
-    <landing-create :content="createListContent"></landing-create>
-    <landing-list-table :content="subsetTableContent"></landing-list-table>
+    <landing-create :contents="createListContent"></landing-create>
+    <landing-list-table :contents="subsetTableContent"></landing-list-table>
   </v-container>
 </template>
 
@@ -20,9 +20,14 @@ export default {
       drawer: true,
       mini: true,
       createListContent: {
-        name: 'Subsets',
-        link: 'SubsetCreate',
-        buttonName: 'Subset',
+        pageTitle: 'Subsets',
+        commands: [
+          {
+            link: 'SubsetCreate',
+            icon: 'mdi-plus-box',
+            buttonName: 'Create Subset',
+          },
+        ],
       },
       subsetTableContent: {
         headers: [

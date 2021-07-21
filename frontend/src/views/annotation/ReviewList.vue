@@ -1,6 +1,6 @@
 <template>
   <div class="terminology-page">
-    <landing-list-table :content="tableContent"></landing-list-table>
+    <landing-list-table :contents="tableContent"></landing-list-table>
   </div>
 </template>
 
@@ -17,9 +17,14 @@ export default {
       drawer: true,
       mini: true,
       createListContent: {
-        name: 'Reviews',
-        link: 'ReviewCreate',
-        buttonName: 'Review',
+        pageTitle: 'Reviews',
+        commands: [
+          {
+            link: 'ReviewCreate',
+            icon: 'mdi-plus-box',
+            buttonName: 'Review',
+          },
+        ],
       },
       tableContent: {
         headers: [

@@ -11,15 +11,15 @@
       <v-list>
         <v-list-item> </v-list-item>
         <v-list-item class="first-list-item">
-          <router-link class="nav-link" :to="{name: content.title.link}" exact>
+          <router-link class="nav-link" :to="{name: contents.title.link}" exact>
             <v-list-item-icon>
-              <v-icon large> {{content.title.icon}} </v-icon>
+              <v-icon large> {{contents.title.icon}} </v-icon>
             </v-list-item-icon>
             <v-list-item-content
               class="first-list-content"
             >
               <v-list-item-title>
-                {{content.title.description}}
+                {{contents.title.description}}
               </v-list-item-title>
             </v-list-item-content>
           </router-link>
@@ -28,10 +28,10 @@
         <v-list-item
           dense
           class="next-list-item"
-          v-for="item in content.items"
+          v-for="item in contents.items"
           :key="item.title"
+          :to="{name: item.link}" exact
           link>
-            <router-link class="nav-link" :to="{name: item.link}" exact>
               <v-list-item-icon>
                 <v-icon dense>{{ item.icon }}</v-icon>
               </v-list-item-icon>
@@ -40,7 +40,6 @@
               >
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item-content>
-            </router-link>
           </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -51,7 +50,7 @@
 export default {
   name: 'SidebarStandard',
   props: {
-    content: {
+    contents: {
       title: String,
       items: Array,
     },

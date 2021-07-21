@@ -7,24 +7,24 @@
       class="create-title"
     >
       <h3>
-        {{contents.pageTitle}}
+        {{title}}
       </h3>
     </v-col>
-    <div v-for="(content, index) in contents.commands" :key="index">
     <v-col>
+      <div v-for="(content, index) in contents" :key="index">
         <v-btn text class="create-button">
           <router-link
             class="create-link"
             :to="{name: content.link}"
           >
           <h4>
-          <v-icon>{{content.icon}}</v-icon>
+          <v-icon>mdi-plus-box</v-icon>
           {{content.buttonName}}
           </h4>
           </router-link>
         </v-btn>
+      </div>
     </v-col>
-    </div>
   </v-row>
 </template>
 
@@ -32,14 +32,17 @@
 export default {
   name: 'LandingCreate',
   props: {
-    contents: {
-      pageTitle: String,
-      commands: [{
-        name: String,
-        link: String,
-        buttonName: String,
-      }],
-    },
+    title: String,
+    contents: [{
+      name: String,
+      link: String,
+      buttonName: String,
+    }],
+    contentz: [{
+      name: String,
+      link: String,
+      buttonName: String,
+    }],
   },
   data() {
     return {

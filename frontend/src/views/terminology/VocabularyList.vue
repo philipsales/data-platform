@@ -1,7 +1,7 @@
 <template>
   <v-container class="generic-table-page">
-    <landing-create :content="createListContent"></landing-create>
-    <landing-list-table :content="tableContent"></landing-list-table>
+    <landing-create :contents="createListContent"></landing-create>
+    <landing-list-table :contents="tableContent"></landing-list-table>
   </v-container>
 </template>
 
@@ -20,9 +20,14 @@ export default {
       drawer: true,
       mini: true,
       createListContent: {
-        name: 'Vocabularies',
-        link: 'VocabularyCreate',
-        buttonName: 'Vocabulary',
+        pageTitle: 'Vocabularies',
+        commands: [
+          {
+            link: 'VocabularyCreate',
+            icon: 'mdi-plus-box',
+            buttonName: 'Create Vocabulary',
+          },
+        ],
       },
       tableContent: {
         headers: [

@@ -78,6 +78,11 @@ export default {
           icon: 'mdi-account-multiple-check',
           link: 'CohortBuilder',
         },
+        {
+          title: 'Access Management',
+          icon: 'mdi-shield-account',
+          link: 'UserList',
+        },
       ],
       mini: true,
     };

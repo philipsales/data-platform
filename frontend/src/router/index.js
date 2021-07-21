@@ -22,6 +22,9 @@ import CohortCreate from '../views/cohort/CohortCreate.vue';
 import SubsetList from '../views/cohort/SubsetList.vue';
 import SubsetCreate from '../views/cohort/SubsetCreate.vue';
 
+import UserList from '../views/access/UserList.vue';
+import RoleList from '../views/access/RoleList.vue';
+
 import SidebarStandard from '../components/sidebars/SidebarStandard.vue';
 
 Vue.use(Router);
@@ -143,6 +146,14 @@ export default new Router({
     path: '/subset/create',
     name: 'SubsetCreate',
     component: SubsetCreate,
+  }, {
+    path: '/user/list',
+    name: 'UserList',
+    component: UserList,
+  }, {
+    path: '/role/list',
+    name: 'RoleList',
+    component: RoleList,
   }, {
     path: '/:notFound(.*)',
     component: NotFound,
