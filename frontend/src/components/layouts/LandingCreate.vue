@@ -12,7 +12,7 @@
     </v-col>
     <div v-for="(content, index) in contents.commands" :key="index">
     <v-col>
-        <v-btn text class="create-button">
+        <v-btn text class="generic-create-button">
           <router-link
             class="create-link"
             :to="{name: content.link}"
@@ -74,5 +74,23 @@ export default {
 }
 .create-title {
   margin-right: 30px;
+}
+.generic-create-button {
+  color: #009e99;
+  margin-top: -3px;
+  border: none;
+  background: none;
+  padding-top: 20px;
+  outline: none;
+  letter-spacing: 0;
+}
+.create-permission-button {
+  color: #009e99;
+  margin-top: -3px;
+  border: none;
+  background: none;
+  padding-top: 20px;
+  outline: none;
+  letter-spacing: 0;
 }
 </style>

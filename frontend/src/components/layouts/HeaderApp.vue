@@ -27,7 +27,7 @@
         v-model="drawer"
         fixed
         class="main-drawer"
-        :style="{ top: $vuetify.application.top + 'px', zIndex: 6, width: 293 }"
+        :style="{ top: $vuetify.application.top + 'px', zIndex: 4, width: 293 }"
         height="140%"
         >
       <v-list >
@@ -36,16 +36,15 @@
           v-for="item in items"
           :key="item.title"
           @click.stop="drawer = !drawer"
-          :to="{name: item.link}" exact
+          :to="{name: item.link}"
+          exact
           link>
-        <!-- <router-link class="nav-link" :to="{name: item.link}" exact> -->
           <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
               <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
-        <!-- </router-link> -->
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -61,6 +60,11 @@ export default {
   // components: {
   // HelloWorld,
   // },
+  method: {
+    foo() {
+      console.log('foo');
+    },
+  },
   data() {
     return {
       drawer: false,

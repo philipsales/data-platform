@@ -87,7 +87,7 @@
                       required
                     ></v-text-field>
                     <v-btn
-                      class="mr-4">
+                      class="mr-4 primary">
                       submit
                     </v-btn>
                     <v-btn

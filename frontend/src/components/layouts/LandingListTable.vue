@@ -25,7 +25,4 @@ export default {
 };
 </script>
 <style scoped>
-.table-row {
-
-}
 </style>

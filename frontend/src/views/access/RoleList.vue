@@ -11,13 +11,44 @@
       </v-col>
     </v-row>
      <div class="container">
+      <!-- SIDEBAR -->
       <aside class="aside">
         <sidebar-standard name="sidebar" :contents="sidebarContent"></sidebar-standard>
       </aside>
+      <!-- MAIN PAGE -->
       <main>
         <v-container class="generic-table-page">
-          <landing-create :contents="createListContent"></landing-create>
-          <landing-list-table :contents="tableContent"></landing-list-table>
+          <landing-create :contents="createRoleContent"></landing-create>
+
+          <v-row class="" style="">
+            <v-col cols="12" style="background-color: ed">
+              <v-card style="padding: 0px 5px;" class="rounded-sm">
+                <v-text-field
+                  v-model="search"
+                  prepend-inner-icon="mdi-magnify"
+                  label="Search"
+                  single-line
+                  hide-details
+                ></v-text-field>
+              </v-card>
+                <v-data-table
+                  :headers="searchValuesetContent.headers"
+                  :items="searchValuesetContent.rows"
+                  item-key="roleId"
+                  show-select
+                  :items-per-page="5"
+                  class="elevation-1">
+                  <template v-slot:item.option="{ item }">
+                    <a href="" class="descendant linkable">
+                    <v-icon color="blue darken-1"
+                      v-model="item.option"
+                      text
+                    >mdi-magnify</v-icon>
+                    </a>
+                  </template>
+                </v-data-table>
+            </v-col>
+          </v-row>
         </v-container>
       </main>
     </div>
@@ -27,13 +58,13 @@
 
 <script>
 import LandingCreate from '../../components/layouts/LandingCreate.vue';
-import LandingListTable from '../../components/layouts/LandingListTable.vue';
+// import LandingListTable from '../../components/layouts/LandingListTable.vue';
 import SidebarStandard from '../../components/sidebars/SidebarStandard.vue';
 
 export default {
   name: 'RoleList',
   components: {
-    LandingListTable,
+    // LandingListTable,
     LandingCreate,
     SidebarStandard,
   },
@@ -41,8 +72,8 @@ export default {
     return {
       drawer: true,
       mini: true,
-      createListContent: {
-        pageTitle: 'Vocabularies',
+      createRoleContent: {
+        pageTitle: 'Roles',
         commands: [
           {
             link: 'RoleCreate',
@@ -70,7 +101,7 @@ export default {
           },
         ],
       },
-      tableContent: {
+      searchValuesetContent: {
         headers: [
           {
             text: 'Title',
@@ -79,21 +110,24 @@ export default {
             value: 'title',
           },
           { text: 'Module', value: 'module' },
-          { text: 'Scope', value: 'scope' },
-          { text: 'function', value: 'function' },
+          { text: 'Status', value: 'status' },
+          { text: 'Permissions', value: 'permission' },
+          { text: '', value: 'option' },
         ],
         rows: [
           {
-            title: 'Owner',
+            roleId: '1',
+            title: 'Terminology Server Owner',
             module: 'Terminology Server',
-            scope: 'Valuesets',
-            function: 'view valueset',
+            status: 'Enabled',
+            permission: '3',
           },
           {
-            title: 'Owner',
+            roleId: '2',
+            title: 'Terminology Server Editor',
             module: 'Terminology Server',
-            scope: 'Valuesets',
-            function: 'view valueset',
+            status: 'Enabled',
+            permission: '33',
           },
         ],
       },

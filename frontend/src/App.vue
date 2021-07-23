@@ -45,6 +45,21 @@ export default {
   margin-top: -30px;
   cursor: pointer;
 }
+.generic-create-button {
+  color: #009e99;
+  margin-top: -3px;
+  border: none;
+  background: none;
+  padding-top: 20px;
+  outline: none;
+  letter-spacing: 0;
+}
+.linkable {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  vertical-align: middle;
+}
 </style>
 
 <style scoped>

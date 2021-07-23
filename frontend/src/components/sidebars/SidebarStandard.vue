@@ -11,7 +11,7 @@
       <v-list>
         <v-list-item> </v-list-item>
         <v-list-item class="first-list-item">
-          <router-link class="nav-link" :to="{name: contents.title.link}" exact>
+          <!-- <router-link class="nav-link" :to="{name: contents.title.link}" exact> -->
             <v-list-item-icon>
               <v-icon large> {{contents.title.icon}} </v-icon>
             </v-list-item-icon>
@@ -22,7 +22,7 @@
                 {{contents.title.description}}
               </v-list-item-title>
             </v-list-item-content>
-          </router-link>
+          <!-- </router-link> -->
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item
@@ -89,5 +89,8 @@ export default {
   color: inherit;
   display: flex;
   vertical-align: middle;
+}
+.router-link-active {
+  background-color: red
 }
 </style>
