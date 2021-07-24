@@ -5,6 +5,7 @@
       fixed
       expand-on-hover
       permanent
+      style="z-index: 3"
       class="sidebar"
       height="120%"
     >

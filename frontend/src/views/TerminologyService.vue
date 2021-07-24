@@ -1,16 +1,7 @@
 <template>
-  <div class="terminology-page">
-    <v-row class="text-center">
-      <v-col class="mb-4">
-        <h1 class="display-1 font-weight-bold page-label">
-          <!-- Terminology Services -->
-        </h1>
-      </v-col>
-      <v-col class="mb-5" cols="12" >
-        <v-row> </v-row>
-      </v-col>
-    </v-row>
-     <div class="container">
+  <v-container fluid class="pa-0 ma-0">
+  <br> <br> <br> <br> <br>
+    <div class="container">
       <aside class="aside">
         <router-view name="sidebar" :contents="sidebarContent"></router-view>
       </aside>
@@ -18,13 +9,14 @@
         <router-view name="default"></router-view>
       </main>
     </div>
-
-  </div>
+  </v-container>
 </template>
 
 <script>
 export default {
   name: 'TerminologyService',
+  components: {
+  },
   data() {
     return {
       drawer: true,
@@ -54,8 +46,6 @@ export default {
 </script>
 <style scoped>
 .terminology-page {
-  width: 100%;
-  background-color: ed;
   height: 1000px;
 }
 .page-sidebar {

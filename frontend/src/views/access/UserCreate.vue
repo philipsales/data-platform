@@ -3,10 +3,16 @@
   <go-back-header :headerTitle="headerTitle"></go-back-header>
     <v-card>
       <v-row class="">
-        <v-col cols="5" class="valueset-input">
-          <h2 class="form-subheader">Role Description</h2>
-          <br>
+        <v-col
+          cols="6"
+          md="5"
+          xl="3"
+          class="role-section">
           <form style="background-color: rd">
+            <v-row>
+            <h2 class="role-form-subheader">Add Members</h2>
+            </v-row>
+            <br>
             <!-- <v-text-field
               outlined
               dense
@@ -16,119 +22,54 @@
             <v-text-field
               outlined
               dense
-              label="Role Name"
+              label="New members"
               required
             ></v-text-field>
-            <v-text-field
-              outlined
-              dense
-              label="Module"
-              required
-            ></v-text-field>
-            <v-text-field
-              outlined
-              dense
-              label="status"
-              required
-            ></v-text-field>
-
-            <h2 class="form-subheader">Role Permissions</h2>
-              <br>
-              <v-data-table
-                :headers="selectedPermissions.headers"
-                :items="selectedPermissions.rows"
-                :items-per-page="5"
-                class="elevation-1">
-                <template v-slot:item.action="{ item }">
-                  <v-icon color="blue darken-1"
-                    v-model="item.action"
-                    text >mdi-delete</v-icon>
-                </template>
-              </v-data-table>
-              <br>
+            <div v-for="(demographic, index) in demographics"
+                  :key=index>
+              <v-row align="center">
+                <v-col
+                  class="d-flex"
+                  cols="12"
+                  sm="10">
+                  <v-select
+                    v-model="value"
+                    :items="roles"
+                    dense
+                    outlined
+                    attach
+                    label="Select a role"
+                    multiple
+                  >
+                  </v-select>
+                  </v-col>
+                  <v-btn
+                    class="dynamic-delete-button"
+                    @click="removeMultipleField(index)">
+                    <v-icon outlined dense>mdi-delete</v-icon>
+                  </v-btn>
+                </v-row>
+                  </div>
+            <v-spacer></v-spacer>
             <v-btn
-              color="pink"
-              dark
-              @click.stop="roleDrawer = !roleDrawer"
+              text
+              class="create-permission-button"
+              @click="addDemographics"
             >
-              Toggle
+              <v-icon>mdi-plus</v-icon>
+              Add Another Role
             </v-btn>
+            <br>
+            <br>
             <v-btn
               class="mr-4 primary">
-              submit
+              Submit
             </v-btn>
-            </form>
-        </v-col>
-        <v-divider vertical inset></v-divider>
-        <v-col cols="7" class="valueset-input">
-          <h2 class="form-subheader">Permissions</h2>
-          <br>
-          <v-data-table
-            :headers="overallPermissions.headers"
-            :items="overallPermissions.rows"
-            item-key="permissionId"
-            :items-per-page="15"
-            show-select
-            class="elevation-1">
-          </v-data-table>
+          </form>
         </v-col>
       </v-row>
     </v-card>
-   <v-sheet
-    height="400"
-    class="overflow-hidden"
-    style="position: relative;"
-  >
-    <v-container class="fill-height">
-      <v-row
-        align="center"
-        justify="center"
-      >
-        <v-btn
-          color="pink"
-          dark
-          @click.stop="roleDrawer = !roleDrawer"
-        >
-          Toggle
-        </v-btn>
-      </v-row>
-    </v-container>
-
-    <v-navigation-drawer
-      v-model="roleDrawer"
-      absolute
-      right
-      temporary
-    >
-      <v-list-item>
-        <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
-        </v-list-item-avatar>
-
-        <v-list-item-content>
-          <v-list-item-title>John Leider</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list dense>
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-  </v-sheet>
+  <!-- </v-sheet> -->
     </v-container>
 </template>
 
@@ -136,18 +77,51 @@
 import GoBackHeader from '../../components/ui/GoBackHeader.vue';
 
 export default {
-  name: 'RoleCreate',
+  name: 'UserCreate',
   components: {
     GoBackHeader,
   },
+  methods: {
+    addField() {
+      this.textFields.push({
+        value: '',
+      });
+    },
+    addDemographics() {
+      this.demographics.push({
+        domain: {
+          value: '',
+        },
+        subset: {
+          value: '',
+        },
+      });
+    },
+    removeMultipleField(index) {
+      this.demographics.splice(index, 1);
+    },
+  },
   data() {
     return {
-      roleDrawer: null,
+      roleDrawer: false,
       headerTitle: 'Create Role',
+      demographics: [{
+        domain: {
+          value: '',
+        },
+        subset: {
+          value: '',
+        },
+      }],
       items: [
         { title: 'Home', icon: 'mdi-home-city' },
         { title: 'My Account', icon: 'mdi-account' },
         { title: 'Users', icon: 'mdi-account-group-outline' },
+      ],
+      roles: [
+        'Terminology Server Owner',
+        'Terminology Server Editor',
+        'Terminology Server Viewer',
       ],
       selectedPermissions: {
         headers: [
@@ -224,10 +198,19 @@ export default {
 };
 </script>
 <style scoped>
-.valueset-input {
+
+.role-form-subheader {
+  padding-left: 20px;
+}
+.role-section{
   padding: 40px;
 }
 .valueset-search {
   padding: 40px;
+}
+.create-permission-button {
+  color: #009e99;
+  margin-right: 10px;
+  letter-spacing: 0;
 }
 </style>

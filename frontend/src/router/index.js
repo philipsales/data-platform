@@ -23,6 +23,7 @@ import SubsetList from '../views/cohort/SubsetList.vue';
 import SubsetCreate from '../views/cohort/SubsetCreate.vue';
 
 import UserList from '../views/access/UserList.vue';
+import UserCreate from '../views/access/UserCreate.vue';
 import RoleList from '../views/access/RoleList.vue';
 import RoleCreate from '../views/access/RoleCreate.vue';
 
@@ -151,6 +152,10 @@ export default new Router({
     path: '/user/list',
     name: 'UserList',
     component: UserList,
+  }, {
+    path: '/user/create',
+    name: 'UserCreate',
+    component: UserCreate,
   }, {
     path: '/role/list',
     name: 'RoleList',

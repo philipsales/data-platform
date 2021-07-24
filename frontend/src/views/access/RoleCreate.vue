@@ -114,6 +114,7 @@ export default {
   data() {
     return {
       roleDrawer: false,
+      status: false,
       headerTitle: 'Create Role',
       items: [
         { title: 'Home', icon: 'mdi-home-city' },

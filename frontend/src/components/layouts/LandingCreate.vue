@@ -1,18 +1,19 @@
 <template>
-  <v-row class="create-header">
-    <v-col
-      sm="2"
-      md="1"
-      xl="1"
-      class="create-title"
+ <v-app-bar
+      class="subheader-app-bar"
+      app
+      color="white"
+      dense
+      flat
+      style="margin-top: 48px; z-index: 2; "
     >
-      <h3>
+    <v-toolbar-title class="create-title" >
+      <h5>
         {{contents.pageTitle}}
-      </h3>
-    </v-col>
-    <div v-for="(content, index) in contents.commands" :key="index">
-    <v-col>
-        <v-btn text class="generic-create-button">
+      </h5>
+    </v-toolbar-title>
+    <div v-for="(content, index) in contents.commands" :key="index" >
+        <v-btn text color="primary" class="generic-create-button">
           <router-link
             class="create-link"
             :to="{name: content.link}"
@@ -23,9 +24,8 @@
           </h4>
           </router-link>
         </v-btn>
-    </v-col>
     </div>
-  </v-row>
+ </v-app-bar>
 </template>
 
 <script>
@@ -48,6 +48,10 @@ export default {
 };
 </script>
 <style scoped>
+.subheader-app-bar {
+  padding-left: 80px;
+  border-bottom: 1px  solid #E0E0E0 !important;;
+}
 
 .create-header {
   height: 50px;
@@ -73,7 +77,7 @@ export default {
   vertical-align: middle;
 }
 .create-title {
-  margin-right: 30px;
+  padding-right: 20px;
 }
 .generic-create-button {
   color: #009e99;
