@@ -1,7 +1,7 @@
 <template>
   <v-container class="generic-container">
     <go-back-header :headerTitle="headerTitle"></go-back-header>
-    <v-card>
+    <v-card class="rounded-0">
       <v-row class="">
         <v-col cols="12" style="background-color: ed" class="valueset-search">
           <v-tabs vertical>
@@ -250,7 +250,7 @@ export default {
 };
 </script>
 <style scoped>
-.vocabulary-server{
+.vocabulary-server {
   padding: 30px;
   background-color: rxed;
   width: 300px;

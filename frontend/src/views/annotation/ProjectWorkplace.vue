@@ -1,13 +1,14 @@
 <template>
-  <v-container class="generic-container">
-     <v-row class="create-header">
+  <v-container class="annotation-workspace-container">
+    <page-header :headerTitle="headerTitle"></page-header>
+     <v-row class="annotation-workspace-header">
       <v-col
-        sm="3"
-        md="3"
-        xl="2"
-        class="create-title"
+        sm="12"
+        md="12"
+        xl="12"
+        class="annotation-workspace-title"
       >
-      <h3> Breast Cancer Project</h3>
+        <h3> Breast Cancer Project</h3>
       </v-col>
      </v-row>
 
@@ -366,10 +367,12 @@
 </template>
 
 <script>
+import PageHeader from '../../components/ui/PageHeader.vue';
 
 export default {
   name: 'ProjectWorkplace',
   components: {
+    PageHeader,
   },
   methods: {
     findLabelColor(label) {
@@ -384,6 +387,7 @@ export default {
   data() {
     return {
       drawer: true,
+      headerTitle: 'Annotation Workspace',
       mini: true,
       labelColor: '',
       progress: {
@@ -463,10 +467,17 @@ export default {
 };
 </script>
 <style scoped>
-.create-header {
+.annotation-workspace-container {
+  margin-top: 55px;
+  min-width: 100%;
+}
+.annotation-workspace-title {
+  padding-left: 30px;
+  text-align: center;
+}
+
+.annotation-workspace-header {
   height: 50px;
-  margin-bottom: 20px;
-  margin-left: 1px;
   background-color: pik;
   width: 100%;
 }

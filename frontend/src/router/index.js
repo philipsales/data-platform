@@ -27,6 +27,8 @@ import UserCreate from '../views/access/UserCreate.vue';
 import RoleList from '../views/access/RoleList.vue';
 import RoleCreate from '../views/access/RoleCreate.vue';
 
+import UserAccount from '../views/account/UserAccount.vue';
+
 import SidebarStandard from '../components/sidebars/SidebarStandard.vue';
 
 Vue.use(Router);
@@ -49,6 +51,7 @@ export default new Router({
           sidebar: SidebarStandard,
         },
       },
+      /*
       {
         path: 'vocabulary',
         name: 'VocabularyList',
@@ -65,7 +68,12 @@ export default new Router({
           sidebar: SidebarStandard,
         },
       },
+      */
     ],
+  }, {
+    path: '/vocabulary/list',
+    name: 'VocabularyList',
+    component: VocabularyList,
   }, {
     path: '/vocabulary/create',
     name: 'VocabularyCreate',
@@ -74,6 +82,10 @@ export default new Router({
     path: '/valueset/create',
     name: 'ValuesetCreate',
     component: ValuesetCreate,
+  }, {
+    path: '/valueset/list',
+    name: 'ValuesetList',
+    component: ValuesetList,
   }, {
     path: '/annotation',
     component: ClinicalAnnotation,
@@ -164,6 +176,10 @@ export default new Router({
     path: '/role/create',
     name: 'RoleCreate',
     component: RoleCreate,
+  }, {
+    path: '/account/user',
+    name: 'UserAccount',
+    component: UserAccount,
   }, {
     path: '/:notFound(.*)',
     component: NotFound,

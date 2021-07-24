@@ -33,7 +33,12 @@ export default {
   /* height: 1000px; */
 }
 .generic-container {
+  margin-top: 85px;
   min-width: 100%;
+}
+.module-home-container {
+  margin-top: 132px;
+  margin-left: 25px;
 }
 .aside {
   width: 69px;

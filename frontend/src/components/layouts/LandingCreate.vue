@@ -1,11 +1,11 @@
 <template>
  <v-app-bar
       class="subheader-app-bar"
+      style="margin-top: 49px; z-index: 2"
       app
       color="white"
       dense
       flat
-      style="margin-top: 48px; z-index: 2; "
     >
     <v-toolbar-title class="create-title" >
       <h5>
@@ -13,7 +13,7 @@
       </h5>
     </v-toolbar-title>
     <div v-for="(content, index) in contents.commands" :key="index" >
-        <v-btn text color="primary" class="generic-create-button">
+        <v-btn text color="primary" class="create-button">
           <router-link
             class="create-link"
             :to="{name: content.link}"
@@ -52,17 +52,10 @@ export default {
   padding-left: 80px;
   border-bottom: 1px  solid #E0E0E0 !important;;
 }
-
-.create-header {
-  height: 50px;
-  margin-bottom: 20px;
-  margin-left: 1px;
-  background-color: pik;
-  width: 120%;
-}
 .create-button {
   color: white;
   margin-top: -3px;
+  margin-left: 20px;
   border: none;
   background: none;
   padding-top: 20px;
@@ -77,24 +70,6 @@ export default {
   vertical-align: middle;
 }
 .create-title {
-  padding-right: 20px;
-}
-.generic-create-button {
-  color: #009e99;
-  margin-top: -3px;
-  border: none;
-  background: none;
-  padding-top: 20px;
-  outline: none;
-  letter-spacing: 0;
-}
-.create-permission-button {
-  color: #009e99;
-  margin-top: -3px;
-  border: none;
-  background: none;
-  padding-top: 20px;
-  outline: none;
-  letter-spacing: 0;
+  padding-right: 30px;
 }
 </style>

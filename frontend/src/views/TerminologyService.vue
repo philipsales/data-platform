@@ -1,7 +1,6 @@
 <template>
-  <v-container fluid class="pa-0 ma-0">
-  <br> <br> <br> <br> <br>
-    <div class="container">
+  <!-- <v-container fluid>
+    <div class="module-home-container">
       <aside class="aside">
         <router-view name="sidebar" :contents="sidebarContent"></router-view>
       </aside>
@@ -9,7 +8,10 @@
         <router-view name="default"></router-view>
       </main>
     </div>
-  </v-container>
+  </v-container> -->
+  <div>
+    <router-view name="default"></router-view>
+  </div>
 </template>
 
 <script>
@@ -45,20 +47,4 @@ export default {
 };
 </script>
 <style scoped>
-.terminology-page {
-  height: 1000px;
-}
-.page-sidebar {
-  z-index: 1;
-  margin-top:10px;
-}
-.nav-link {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-
-}
-.aside {
-  background-color: grey;
-}
 </style>

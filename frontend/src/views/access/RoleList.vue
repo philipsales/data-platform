@@ -1,16 +1,6 @@
 <template>
-<div class="terminology-page">
-    <v-row class="text-center">
-      <v-col class="mb-4">
-        <h1 class="display-1 font-weight-bold page-label">
-          <!-- Terminology Services -->
-        </h1>
-      </v-col>
-      <v-col class="mb-5" cols="12" >
-        <v-row> </v-row>
-      </v-col>
-    </v-row>
-     <div class="container">
+  <v-container fluid>
+    <div class="module-home-container">
       <!-- SIDEBAR -->
       <aside class="aside">
         <sidebar-standard name="sidebar" :contents="sidebarContent"></sidebar-standard>
@@ -52,8 +42,7 @@
         </v-container>
       </main>
     </div>
-  </div>
-
+  </v-container>
 </template>
 
 <script>
@@ -136,35 +125,4 @@ export default {
 };
 </script>
 <style scoped>
-.terminology-page {
-  width: 100%;
-  background-color: ed;
-  height: 1000px;
-}
-.sidebar {
-  z-index: 1;
-  margin-top: -16px;
-  min-width: 64px;
-}
-.first-list-item {
-  padding-left: 15px;
-  padding-top: 0px;
-  margin-bottom: -12px;
-}
-.first-list-content {
-  margin-left: -16px;
-}
-.next-list-item {
-  padding-left: 21px;
-}
-.next-list-content {
-  padding-top: 10px;
-  margin-left: -10px;
-}
-.nav-link {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  vertical-align: middle;
-}
 </style>

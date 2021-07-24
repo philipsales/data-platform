@@ -1,24 +1,21 @@
 <template>
  <v-app-bar
-      class="goback-app-bar"
+      class="page-app-bar"
       style="margin-top: 49px; z-index: 2"
       app
       color="white"
       dense
       flat
     >
-    <go-back-button></go-back-button>
-    <h3> &nbsp; &nbsp; &nbsp;{{headerTitle}} </h3>
+    <h3> &nbsp;{{headerTitle}} </h3>
  </v-app-bar>
 </template>
 
 <script>
-import GoBackButton from './GoBackButton.vue';
 
 export default {
-  name: 'GoBackHeader',
+  name: 'PageHeader',
   components: {
-    GoBackButton,
   },
   props: {
     headerTitle: String,
@@ -32,11 +29,7 @@ export default {
 </script>
 
 <style scoped>
-.goback-app-bar {
+.page-app-bar {
   border-bottom: 1px  solid #E0E0E0 !important;;
-}
-.back-header {
-  height: 50px;
-  margin: 1px 5px 10px 3px;
 }
 </style>

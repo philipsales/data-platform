@@ -1,16 +1,6 @@
 <template>
-<div class="terminology-page">
-    <v-row class="text-center">
-      <v-col class="mb-4">
-        <h1 class="display-1 font-weight-bold page-label">
-          <!-- Terminology Services -->
-        </h1>
-      </v-col>
-      <v-col class="mb-5" cols="12" >
-        <v-row> </v-row>
-      </v-col>
-    </v-row>
-     <div class="container">
+  <v-container fluid>
+    <div class="module-home-container">
       <aside class="aside">
         <sidebar-standard name="sidebar" :contents="sidebarContent"></sidebar-standard>
       </aside>
@@ -21,8 +11,7 @@
         </v-container>
       </main>
     </div>
-  </div>
-
+  </v-container>
 </template>
 
 <script>

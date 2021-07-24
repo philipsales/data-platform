@@ -22,7 +22,19 @@
             <v-text-field
               outlined
               dense
-              label="New members"
+              label="Member email"
+              required
+            ></v-text-field>
+            <v-text-field
+              outlined
+              dense
+              label="First members"
+              required
+            ></v-text-field>
+            <v-text-field
+              outlined
+              dense
+              label="Last name"
               required
             ></v-text-field>
             <div v-for="(demographic, index) in demographics"

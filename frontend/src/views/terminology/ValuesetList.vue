@@ -1,19 +1,30 @@
 <template>
-  <v-container class="generic-table-page">
-    <landing-create :contents="createListContent"></landing-create>
-    <landing-list-table :contents="tableContent"></landing-list-table>
+  <v-container fluid>
+    <div class="module-home-container">
+      <aside class="aside">
+        <sidebar-standard name="sidebar" :contents="sidebarContent"></sidebar-standard>
+      </aside>
+      <main>
+        <v-container class="generic-table-page">
+          <landing-create :contents="createListContent"></landing-create>
+          <landing-list-table :contents="tableContent"></landing-list-table>
+        </v-container>
+      </main>
+    </div>
   </v-container>
 </template>
 
 <script>
 import LandingCreate from '../../components/layouts/LandingCreate.vue';
 import LandingListTable from '../../components/layouts/LandingListTable.vue';
+import SidebarStandard from '../../components/sidebars/SidebarStandard.vue';
 
 export default {
   name: 'ValusetList',
   components: {
     LandingListTable,
     LandingCreate,
+    SidebarStandard,
   },
   data() {
     return {
@@ -26,6 +37,25 @@ export default {
             link: 'ValuesetCreate',
             icon: 'mdi-plus-box',
             buttonName: 'Create Valueset',
+          },
+        ],
+      },
+      sidebarContent: {
+        title: {
+          description: 'Terminology Service',
+          icon: 'mdi-database',
+          link: 'TerminologyService',
+        },
+        items: [
+          {
+            title: 'Vocabulary',
+            icon: 'mdi-home-city',
+            link: 'VocabularyList',
+          },
+          {
+            title: 'Valueset',
+            icon: 'mdi-account',
+            link: 'ValuesetList',
           },
         ],
       },

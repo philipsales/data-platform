@@ -56,6 +56,7 @@
         <v-list-item
           v-for="item in accountMenus"
           :key="item.title"
+          :to="{name: item.link}"
           link
         >
           <v-list-item-icon>
@@ -87,7 +88,8 @@
           @click.stop="drawer = !drawer"
           :to="{name: item.link}"
           exact
-          link>
+          link
+        >
           <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -125,7 +127,7 @@ export default {
         {
           title: 'Edit Account',
           icon: 'mdi-shield-account-outline',
-          link: 'TerminologyService',
+          link: 'UserAccount',
         },
         {
           title: 'Sign out',
@@ -137,16 +139,16 @@ export default {
         {
           title: 'Terminology Server',
           icon: 'mdi-database',
-          link: 'TerminologyService',
+          link: 'VocabularyList',
         }, {
           title: 'Clinical Annotation',
           icon: 'mdi-pencil-box-multiple',
-          link: 'ClinicalAnnotation',
+          link: 'ProjectList',
         },
         {
           title: 'Cohort Builder',
           icon: 'mdi-account-multiple-check',
-          link: 'CohortBuilder',
+          link: 'SubsetList',
         },
         {
           title: 'Access Management',
