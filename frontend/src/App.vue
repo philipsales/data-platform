@@ -1,6 +1,8 @@
 <template>
   <v-app>
+    <span v-if="authenticated">
     <header-app></header-app>
+    </span>
     <v-main>
       <router-view></router-view>
     </v-main>
@@ -17,6 +19,7 @@ export default {
   },
   data() {
     return {
+      authenticated: true,
     };
   },
 };

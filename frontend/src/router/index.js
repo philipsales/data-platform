@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import LoginPage from '../views/LoginPage.vue';
 import HomePage from '../views/HomePage.vue';
 
 import NotFound from '../views/NotFound.vue';
@@ -37,6 +38,10 @@ export default new Router({
   mode: 'history',
   routes: [{
     path: '/',
+    name: 'LoginPage',
+    component: LoginPage,
+  }, {
+    path: '/home',
     name: 'HomePage',
     component: HomePage,
   }, {

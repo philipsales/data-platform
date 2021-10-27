@@ -1,5 +1,6 @@
 <template>
-  <v-container class="terminology-page">
+  <v-container>
+    <header-app></header-app>
     <v-row class="text-center">
       <v-col cols="12">
         <v-img
@@ -24,8 +25,13 @@
 </template>
 
 <script>
+import HeaderApp from '../components/layouts/HeaderApp.vue';
+
 export default {
   name: 'HomePage',
+  components: {
+    HeaderApp,
+  },
   data() {
     return {
       drawer: true,
@@ -39,7 +45,4 @@ export default {
 };
 </script>
 <style scoped>
-.terminology-page {
-  width: 100%;
-}
 </style>
